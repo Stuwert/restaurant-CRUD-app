@@ -2,6 +2,7 @@ var knex = require('../db/knex')
 var express = require('express');
 var router = express.Router();
 var states = require('../db/states')
+var cuisine = require('../db/cuisine')
 
 var commands = {
 
@@ -10,9 +11,13 @@ var commands = {
       res.render('restaurants/index', {restaurants: result})
     })
   },
-  readSpec: function(req, res){
+  readSpec: function(req, res, loc){
     restaurants().where('id', req.params.id).first().then(function(result){
-      res.render('restaurants/view', {result: result})
+      if (loc === 'new'){
+        res.render('restaurants/' + loc, {restaurants: result, states: states, cuisine: cuisine})
+      }else{
+        res.render('restaurants/' + loc, {restaurants: result})
+      }
     })
   },
 

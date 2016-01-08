@@ -3,19 +3,19 @@ extend ../layout
 block content
 
   header
-    h1 Los Tacos
+    h1= restaurants.name
   main
-    img(src='http://placehold.it/350x350' height='350px' width='350px')
+    img(src='/images' + restaurants.img, height='350px' width='350px')
     div.detail
       div
-        h2 Mexican cuisine
-        h2 Located in Denver, CO
-      p Busy & easygoing outpost for Mexican comfort food such as carnitas, paired with potent margaritas.  Known for MExican meals with a spicy green chili.
+        h2= restaurants.cuisine + " cuisine" 
+        h2= "Located in " + restaurants.location.city + ", " + restaurants.location.state
+      p= restaurants.description
       div.rating
-        p Rating
+        p Rating:
         div.stars
           - var i = 1;
-          while i <= 5
+          while i <= restaurants.rating
             img(src='http://placehold.it/30x30' id= i++)
       div.buttons
         button.green

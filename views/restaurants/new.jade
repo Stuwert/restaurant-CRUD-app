@@ -6,24 +6,33 @@ block content
   main
     form.ferm(method='post' action='/restaurant')
       label Name 
-      input(type="text" name="name" placeholder='Restaurant Name') 
+      input(type="text" name="name" placeholder='Restaurant Name' value= restaurants.name) 
       label Location
-      input(type='text' name='city' placeholder='City')
+      input(type='text' name='city' placeholder='City' value= restaurants.location.city)
       select(name='state')
         for val in states
-          option(value= val)= val
+          if val == states.indexOf(restaurants.location.state)
+            option(value= val selected='selected')= val
+          else
+            option(value= val)= val
       label Cuisine  
       select(name='cuisine')
         for val in cuisine
-          option(value= val)= val
+          if val == cuisine.indexOf(restaurants.cuisine)
+            option(value= val selected='selected')= val
+          else
+            option(value= val)= val
       label Rating
       div.ratings
         - var n = 1
         while n<=5
-          input(name='rating' type='radio' value= n++)
+          if n == restaurants.rating
+            input(name='rating' type='radio' checked='checked' value= n++)
+          else
+            input(name='rating' type='radio' value= n++)
       label Image
-      input(type='text' name='img' placeholder='Image URL')
-      textarea(cols='40', rows='8', name='description' placeholder='Short bio')
+      input(type='text' name='img' value= restaurants.img placeholder='Image URL')
+      textarea(value= restaurants.description cols='40', rows='8', name='description' placeholder='Short bio')
       div.buttons
         button.green(type='submit') Create
         button.red Cancel

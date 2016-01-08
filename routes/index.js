@@ -4,7 +4,17 @@ var controller = require('../controls/app')
 var states = require('../db/states')
 var cuisine = require('../db/cuisine')
 var router = express.Router();
-
+var object = {
+  name: null,
+  location: {
+    city: null,
+    state: null
+  },
+  cuisine : null,
+  rating: null,
+  img: null,
+  description: null,
+}
 
 /* GET home page. */
 
@@ -15,11 +25,16 @@ router.get('/', function(req, res, next) {
 
 //Create new, form
 router.get('/restaurant/new', function(req, res, next){
-  res.render('restaurants/new', {states: states, cuisine: cuisine});
+  res.render('restaurants/new', {restaurants: object, states: states, cuisine: cuisine})
+})
+
+//Edit form
+router.get('/restaurant/:id/edit', function(req, res, next){
+  controller.readSpec(req, res, 'new')
 })
 
 router.post('/restaurant', function(req, res, next){
-  var object = {
+  object = {
     name: req.body.name,
     location: {
       city: req.body.city,
@@ -34,9 +49,10 @@ router.post('/restaurant', function(req, res, next){
 })
 
 //Read request one
-router.get('/restaurant/test', function(req, res, next){
-  res.render('restaurants/view')
+router.get('/restaurant/:id', function(req, res, next){
+  controller.readSpec(req, res, 'view');
 })
+
 
 
 //Post request Create
