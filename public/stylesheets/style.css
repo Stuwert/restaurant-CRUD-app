@@ -37,6 +37,74 @@ main{
   position: relative;
 }
 
+main > img{
+  float: left;
+  margin-top: 50px;
+}
+
+main .detail{
+  margin: 50px 0 0 50px;
+  float: left;
+  height: 350px;
+  width: 375px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.detail h2, .detail p{
+  font-size: 20px;
+  font-weight: lighter;
+  margin: 10px;
+}
+
+.detail .buttons{
+  width: 60%;
+  margin-left: 25%;
+  height: 35px;
+}
+
+.detail p{
+  line-height: 1.5;
+}
+
+.rating{
+  display: flex;
+  align-items: center;
+}
+
+.stars{
+  display: flex;
+  justify-content: space-around;
+  width: 200px;
+}
+
+.buttons button{
+  width: 45%;
+  height: 100%;
+  border-radius: 5px;
+  box-shadow: none;
+  border: none;
+}
+
+.buttons button a{
+  font-weight: lighter;
+  color: #3d3937;
+}
+
+.buttons{
+  display: flex;
+  justify-content: space-between;
+}
+.red{
+  background-color: #ff5b39;
+}
+
+.green{
+  background-color: #56cd77;
+}
+
 .food{
   float: left;
   width: 200px;

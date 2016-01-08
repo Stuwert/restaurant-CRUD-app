@@ -34,9 +34,8 @@ router.post('/restaurant', function(req, res, next){
 })
 
 //Read request one
-router.get('restaurant/:id', function(req, res, next){
-
-  controller.readspec(req, res, object);
+router.get('/restaurant/test', function(req, res, next){
+  res.render('restaurants/view')
 })
 
 

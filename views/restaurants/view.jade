@@ -1,0 +1,25 @@
+extend ../layout
+
+block content
+
+  header
+    h1 Los Tacos
+  main
+    img(src='http://placehold.it/350x350' height='350px' width='350px')
+    div.detail
+      div
+        h2 Mexican cuisine
+        h2 Located in Denver, CO
+      p Busy & easygoing outpost for Mexican comfort food such as carnitas, paired with potent margaritas.  Known for MExican meals with a spicy green chili.
+      div.rating
+        p Rating
+        div.stars
+          - var i = 1;
+          while i <= 5
+            img(src='http://placehold.it/30x30' id= i++)
+      div.buttons
+        button.green
+          a(href='#') Edit
+        button.red
+          a(href='#') Cancel
+        
