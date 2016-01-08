@@ -6,7 +6,7 @@ var commands = {
 
   read: function(req, res){
     restaurants().select().then(function(result){
-      res.render('restaurants/index', {result: result})
+      res.render('restaurants/index', {restaurants: result})
     })
   },
   readSpec: function(req, res){

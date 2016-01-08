@@ -7,10 +7,12 @@ block content
     a(href="#") 
       p New Restaurant
   main
-      each val in [1, 2, 3, 4, 5, 6]
+      each val in restaurants
         div.food
-          h2= 'Title' + val
-          img(src='http://placekitten.com/g/125/125' height='125' width='125')
-          p= 'Cuisine' + val
-          p= 'Place' + val
-          p= 'Rating'
+          h2= val.name
+          img(src='/images/' + val.img, height='125' width='125')
+          p= val.cuisine
+          p= val.location.city + ', ' + val.location.state
+          while n < val.rating
+            img(src='http://placekitten.com/g/25/25')
+            n++
