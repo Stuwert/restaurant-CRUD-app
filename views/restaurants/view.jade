@@ -17,9 +17,9 @@ block content
           - var i = 1;
           while i <= restaurants.rating
             img(src='http://placehold.it/30x30' id= i++)
-      div.buttons
+      form(action='/restaurant/'+ restaurants.id, method='post').buttons  
         button.green
-          a(href='#') Edit
-        button.red
-          a(href='#') Cancel
+          a(href='/restaurant/' + restaurants.id + '/edit') Edit
+        button.red(type='submit' name='button' value='delete')
+          a Delete
         

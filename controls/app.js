@@ -7,7 +7,7 @@ var cuisine = require('../db/cuisine')
 var commands = {
 
   read: function(req, res){
-    restaurants().select().then(function(result){
+    restaurants().select().table('mexican').then(function(result){
       res.render('restaurants/index', {restaurants: result})
     })
   },
@@ -25,20 +25,20 @@ var commands = {
     restaurants().insert(object, 'id').then(function(result){
       res.redirect('/');
     })
+  },
+
+  update: function(req, res, object){
+    restaurants().where('id', req.params.id).update(object).then(function(result){
+      res.redirect('/restaurant/' + req.params.id)
+    })
+  },
+
+  delete: function(req, res){
+    restaurants().where('id', req.params.id).del().then(function(result){
+      res.redirect('/')
+    })
   }
 
-  // createUpdateDelete: function(req, res, type, object, id, ){
-  //   //id = req.params.id
-  //   }else if(type =="update"){
-  //     restaurant().where('id', id).update(object).then(function(result){
-  //       res.redirect('index')
-  //     })
-  //   }else {
-  //     restaurants().where('id', id).del().then(function(result){
-  //       res.redirect('index');
-  //     });
-  //   }
-  // }
 
 }
 

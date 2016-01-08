@@ -53,23 +53,24 @@ router.get('/restaurant/:id', function(req, res, next){
   controller.readSpec(req, res, 'view');
 })
 
-
-
-//Post request Create
-// router.post('/restaurant', function(req, res, next){
-
-//   controller.createUpdateDelete(req, res, "create", object);
-// });
-//
-// router.post('/:id', function(req, res){
-//   controller.createUpdateDelete(req, res, "delete")
-//
-// })
-//
-// //Post request Update
-// router.post('/:id/edit', function(req, res){
-//   controller.createUpdateDelete(req, res, "update");
-// })
+router.post('/restaurant/:id', function(req, res, next){
+  if (req.body.button === 'delete'){
+    controller.delete(req, res);
+  }else{
+    object = {
+      name: req.body.name,
+      location: {
+        city: req.body.city,
+        state: req.body.state
+      },
+      cuisine : req.body.cuisine,
+      rating: req.body.rating,
+      img: req.body.img,
+      description: req.body.description,
+    }
+    controller.update(req, res, object)
+  }
+})
 
 
 module.exports = router;
