@@ -49,3 +49,25 @@ main{
   flex-direction: column;
   align-items: flex-start;
 }
+
+.ferm{
+  width: 90%;
+  height: 500px;
+  margin: 30px 5%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #0d0d0d;
+  align-items: flex-start;
+  justify-content: space-around;
+  position: relative;
+}
+
+.ferm > *{
+  margin-left: 10px;
+}
+
+.ferm .buttons{
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+}

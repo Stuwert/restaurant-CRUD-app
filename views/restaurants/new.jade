@@ -1,0 +1,30 @@
+extend ../layout
+
+block content
+
+  include header
+  main
+    form.ferm(method='post' action='/restaurant')
+      label Name 
+      input(type="text" name="name" placeholder='Restaurant Name') 
+      label Location
+      input(type='text' name='city' placeholder='City')
+      select(name='state')
+        for val in states
+          option(value= val)= val
+      label Cuisine  
+      select(name='cuisine')
+        for val in cuisine
+          option(value= val)= val
+      label Rating
+      div.ratings
+        - var n = 1
+        while n<=5
+          input(name='rating' type='radio' value= n++)
+      label Image
+      input(type='text' name='img' placeholder='Image URL')
+      textarea(cols='40', rows='8', name='description' placeholder='Short bio')
+      div.buttons
+        button(type='submit') Create
+        button.cancel Cancel
+  

@@ -1,6 +1,7 @@
 var knex = require('../db/knex')
 var express = require('express');
 var router = express.Router();
+var states = require('../db/states')
 
 var commands = {
 
@@ -14,32 +15,25 @@ var commands = {
       res.render('restaurants/view', {result: result})
     })
   },
-  createUpdateDelete: function(req, res, type){
-    var object = {
-      name: req.body.name,
-      location: {
-        city: req.body.city,
-        state: req.body.state
-      },
-      cuisine : req.body.cuisine,
-      rating: req.body.rating,
-      img: req.body.image,
-      description: req.body.description
-    }
-    if (type === 'create'){
-      restaurants().insert(object, 'id').then(function(result){
-        res.redirect('index')
-      })
-    }else if(type =="update"){
-      restaurant().where('id', req.params.id).update(object).then(function(result){
-        res.redirect('index')
-      })
-    }else {
-      restaurants().where('id', req.params.id).del().then(function(result){
-        res.redirect('index');
-      });
-    }
+
+  create: function(res, object){
+    restaurants().insert(object, 'id').then(function(result){
+      res.redirect('/');
+    })
   }
+
+  // createUpdateDelete: function(req, res, type, object, id, ){
+  //   //id = req.params.id
+  //   }else if(type =="update"){
+  //     restaurant().where('id', id).update(object).then(function(result){
+  //       res.redirect('index')
+  //     })
+  //   }else {
+  //     restaurants().where('id', id).del().then(function(result){
+  //       res.redirect('index');
+  //     });
+  //   }
+  // }
 
 }
 
