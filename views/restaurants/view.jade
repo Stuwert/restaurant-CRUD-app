@@ -16,7 +16,7 @@ block content
         div.stars
           - var i = 1;
           while i <= restaurants.rating
-            img(src='http://placehold.it/30x30' id= i++)
+            img(src='/images/star.png' height='30' width='30' id= i++)
       form(action='/restaurant/'+ restaurants.id, method='post').buttons  
         button.green
           a(href='/restaurant/' + restaurants.id + '/edit') Edit
