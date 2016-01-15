@@ -19,14 +19,17 @@ router.get('/restaurant/new', function(req, res, next){
   res.render('restaurants/new', {states: states, cuisine: cuisine})
 })
 
-router.get('/restaurant/:id/reviews', function(req, res, next){
-  app.use('/restaurant/' + req.params.id + '/reviews', reviews)
-})
-
 //Create new table item
 router.post('/restaurant', function(req, res, next){
   controller.create(req, res, "locations");
 })
+
+//Read request single table element
+router.get('/restaurant/:id/', function(req, res, next){
+  controller.readSpec(req, res, 'view', 'locations');
+})
+
+
 
 //Edit form
 router.get('/restaurant/:id/edit', function(req, res, next){
@@ -34,15 +37,21 @@ router.get('/restaurant/:id/edit', function(req, res, next){
 })
 
 //Get Admin Form
-router.get('/restaurant/admin', function(req, res, next){
+router.get('/restaurant/:id/admin', function(req, res, next){
+  controller.read(req, res, 'admin', 'employees')
+})
+
+//Get Review Form
+router.get('/restaurant/:id/reviews/new', function(req, res, next){
+  controller.read(req, res, 'admin', 'employees')
+})
+
+//Get Review Form
+router.get('/restaurant/:id/reviews/new', function(req, res, next){
   controller.read(req, res, 'admin', 'employees')
 })
 
 
-//Read request single table element
-router.get('/restaurant/:id', function(req, res, next){
-  controller.readSpec(req, res, 'view', 'locations');
-})
 
 //Update thing.
 router.post('/restaurant/:id', function(req, res, next){
