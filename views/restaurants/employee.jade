@@ -1,0 +1,11 @@
+extend ../index
+
+block navbar
+
+block body
+  h2= restaurants.first_name + restaurants.last_name
+  p= restaurants.position
+  a(href='/admin/restaurant/' + restaurants.restaurant_id + '/employee/' + restaurants.id + '/edit') Update
+  form(method='post' action='/admin/restaurant/' + restaurants.restaurant_id + '/employee/' + restaurants.id + '/delete')
+    button Delete
+  

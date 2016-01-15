@@ -3,5 +3,6 @@ module.exports = [
   'Mexican',
   'Thai',
   'Vietnamese',
-  'Italian'
+  'Italian',
+  'Other'
 ]

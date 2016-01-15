@@ -15,10 +15,12 @@ header{
   position: relative;
 }
 
-header p{
+header div{
   position: absolute;
   bottom: 3px;
   right: 10px;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 a {
@@ -188,4 +190,9 @@ main .detail{
 
 .ferm .buttons a{
   font-size: 18px;
+}
+
+.admin .food{
+  width: 94%;
+  margin-left: 3%;
 }

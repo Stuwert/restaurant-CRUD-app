@@ -1,20 +1,22 @@
 extends ../index
 
 block navbar
-  a(href="/restaurant/new") 
-    p New Restaurant
-  a(href='/')
-    p Customer Panel
+  h4 admin
+  div
+    a(href="/admin/restaurant/new") 
+      p New Restaurant
+    a(href='/')
+      p Customer Panel
 
 block body
-  each val in restaurants
-    div.food
-      h2
-        a(href='admin/restaurant/' + val.id )= val.name
-      img(src= val.img, height='125' width='125')
-      p= val.cuisine
-      p= val.city + ', ' + val.state
-      div
-        - var i = 1
-        while i <= val.rating
-          img(src='/images/star.png' height='25' width='25' id= i++)
+  div.admin
+    each val in restaurants
+      div.food
+        h2
+          a(href='/admin/restaurant/' + val.id )= val.name
+        p= val.cuisine
+        p= val.city + ', ' + val.state
+        div
+          - var i = 1
+          while i <= val.rating
+            img(src='/images/star.png' height='25' width='25' id= i++)
