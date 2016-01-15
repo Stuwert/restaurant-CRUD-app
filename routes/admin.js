@@ -29,7 +29,7 @@ router.get('/restaurant/:restaurantid/employee/:id/edit', function(req, res, nex
   controller.readSpec(req, res, 'editemployee', 'employees')
 })
 
-router.post('/restaurant/:restaurantid/employee/:id/edit', function(req, res, next){
+router.post('/restaurant/:restaurantid/employee/:id/', function(req, res, next){
   controller.updateEmployee(req, res, 'editemployee', 'employees')
 })
 

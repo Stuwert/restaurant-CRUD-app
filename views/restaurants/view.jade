@@ -23,4 +23,10 @@ block content
           a(href='/restaurant/' + restaurants.id + '/edit') Edit
         button.red(type='submit' name='button' value='delete')
           a Delete
+    each review in restaurants
+      div
+        p= review.reviewer_name
+        p= review.date
+        p= review.rating
+        p= review.review
         

@@ -23,7 +23,7 @@ var commands = {
       if (loc === 'new'){
         res.render('restaurants/' + loc, {restaurants: result, states: states, cuisine: cuisine, action: '/restaurant/' + req.params.id + '/'})
       }else if (loc === 'editemployee'){
-        res.render('restaurants/' + loc, {employee: result, positions: positions, action: '/admin/restaurant/' + req.params.restaurantid + '/employee/' + req.params.id + '/edit'})
+        res.render('restaurants/' + loc, {employee: result, positions: positions, action: '/admin/restaurant/' + req.params.restaurantid + '/employee/' + req.params.id })
       }else{
         res.render('restaurants/' + loc, {restaurants: result})
       }
@@ -68,7 +68,7 @@ var commands = {
 
   join: function(req, res, db){
     restaurants('location').join(db, 'location.id', '=', db + '.restaurant_id').where('id', req.params.id).first().then(function(result){
-      console.log(result);
+
     });
   },
 
@@ -78,7 +78,6 @@ var commands = {
     })
   },
   updateEmployee: function(req, res){
-    console.log(req.body);
     var object = {
       first_name: req.body.first,
       last_name: req.body.last,
@@ -88,6 +87,17 @@ var commands = {
       res.redirect('/admin/restaurant/' + req.params.restaurantid + '/employee/' + req.params.id)
     })
   },
+  updateReview: function(req, res){
+    var object = {
+      reviewer_name: req.body.reviewer,
+      date: req.body.date,
+      rating: req.body.rating,
+      review: req.body.review
+    }
+    restaurants('reviews').where('id', req.params.id).update(object).then(function(result){
+      res.redirect('/restaurant/' + req.params.restaurantid + '/review/' + req.params.id)
+    })
+  }
 
 
 }
