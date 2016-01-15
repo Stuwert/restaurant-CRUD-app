@@ -57,8 +57,8 @@ var commands = {
     })
   },
 
-  join: function(req, res){
-    restaurants('locations').join('employees', 'locations.id', 'employees.restaurant_id').select().then(function(result){
+  join: function(req, res, db){
+    restaurants('location').join(db, 'location.id', '=', db + '.restaurant_id').select().then(function(result){
       console.log(result);
     });
   }

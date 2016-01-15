@@ -4,7 +4,9 @@ var controller = require('../controls/app')
 var states = require('../db/states')
 var cuisine = require('../db/cuisine')
 var router = express.Router();
+var app = express();
 
+var reviews = require('./reviews')
 /* GET home page. */
 
 //Read request all
@@ -15,6 +17,10 @@ router.get('/', function(req, res, next) {
 //Create new, form
 router.get('/restaurant/new', function(req, res, next){
   res.render('restaurants/new', {states: states, cuisine: cuisine})
+})
+
+router.get('/restaurant/:id/reviews', function(req, res, next){
+  app.use('/restaurant/' + req.params.id + '/reviews', reviews)
 })
 
 //Create new table item
