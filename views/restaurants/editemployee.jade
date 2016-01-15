@@ -1,0 +1,15 @@
+extend ../index
+
+block navbar
+
+block body
+  form(method='post' action=action)
+    label First Name
+    input(name='first' value= employee ? employee.first_name : "")
+    label Last Name
+    input(name='last' value= employee ? employee.last_name : "")
+    label Position
+    select(name='position')
+      each position in positions
+        option(value=position select= employee && employee.position === position ? selected : false)= position
+    button(type='submit') Submit

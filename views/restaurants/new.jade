@@ -1,7 +1,7 @@
 extends ../index
 
 block body
-  form.ferm(method='post' action= restaurants ? '/restaurant/' + restaurants.id : '/restaurant')
+  form.ferm(method='post' action= action)
     h3.labelform= restaurants ? 'Update Restaurant' : 'New Restaurant'
     label Name 
     input(type="text" name="name" placeholder='Restaurant Name' value=restaurants ? restaurants.name : "") 

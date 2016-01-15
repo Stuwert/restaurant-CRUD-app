@@ -4,9 +4,6 @@ var controller = require('../controls/app')
 var states = require('../db/states')
 var cuisine = require('../db/cuisine')
 var router = express.Router();
-var app = express();
-require('dotenv').load();
-
 
 /* GET home page. */
 
@@ -17,7 +14,7 @@ router.get('/', function(req, res, next) {
 
 //Create new, form
 router.get('/restaurant/new', function(req, res, next){
-  res.render('restaurants/new', {states: states, cuisine: cuisine})
+  res.render('restaurants/new', {states: states, cuisine: cuisine, action: '/restaurants'})
 })
 
 //Create new table item
@@ -27,31 +24,15 @@ router.post('/restaurant', function(req, res, next){
 
 //Read request single table element
 router.get('/restaurant/:id/', function(req, res, next){
-  controller.readSpec(req, res, 'view', 'locations');
+  controller.readSpec(req, res, 'view', 'locations', 'id');
 })
 
 
 
 //Edit form
 router.get('/restaurant/:id/edit', function(req, res, next){
-  controller.readSpec(req, res, 'new', 'locations')
+  controller.readSpec(req, res, 'new', 'locations', 'id')
 })
-
-//Get Admin Form
-router.get('/restaurant/:id/admin', function(req, res, next){
-  controller.read(req, res, 'admin', 'employees')
-})
-
-//Get Review Form
-router.get('/restaurant/:id/reviews/new', function(req, res, next){
-  controller.read(req, res, 'admin', 'employees')
-})
-
-//Get Review Form
-router.get('/restaurant/:id/reviews/new', function(req, res, next){
-  controller.read(req, res, 'admin', 'employees')
-})
-
 
 
 //Update thing.
@@ -63,6 +44,12 @@ router.post('/restaurant/:id', function(req, res, next){
 router.post('/restaurant/:id/delete', function(req, res, next){
   controller.delete(req, res, "locations");
 })
+
+
+// **********  Reviews
+// **********  Reviews
+
+
 
 
 module.exports = router;

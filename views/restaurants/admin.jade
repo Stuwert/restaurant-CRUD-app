@@ -1,11 +1,12 @@
-extend ../layout
+extend ../index
 
-block content
-
+block header
+  a(href='/admin')
+    p Admin Panel
+    
+block body
   each employee in restaurants
     div
-      h2= employee.first_name + ' ' + employee.last_name
-      p= employee.salary
-      p= employee.start_date
-      p= employee.notes
-      
+      h2
+        a(href='/admin/restaurant/' + employee.restaurant_id + '/employee/' + employee.id )= employee.first_name + ' ' + employee.last_name
+    
