@@ -7,7 +7,7 @@ var router = express.Router();
 var app = express();
 require('dotenv').load();
 
-var reviews = require('./reviews')
+
 /* GET home page. */
 
 //Read request all
