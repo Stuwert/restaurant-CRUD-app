@@ -5,6 +5,7 @@ var states = require('../db/states')
 var cuisine = require('../db/cuisine')
 var router = express.Router();
 var app = express();
+require('dotenv').load();
 
 var reviews = require('./reviews')
 /* GET home page. */
