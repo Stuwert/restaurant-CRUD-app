@@ -4,12 +4,13 @@ block content
 
   header
     h1= restaurants.name
+    a(href='/') Return to Homepage
   main
-    img(src='/images' + restaurants.img, height='350px' width='350px')
+    img(src=restaurants.img, height='350px' width='350px')
     div.detail
       div
         h2= restaurants.cuisine + " cuisine" 
-        h2= "Located in " + restaurants.location.city + ", " + restaurants.location.state
+        h2= "Located in " + restaurants.city + ", " + restaurants.state
       p= restaurants.description
       div.rating
         p Rating:
@@ -17,8 +18,8 @@ block content
           - var i = 1;
           while i <= restaurants.rating
             img(src='/images/star.png' height='30' width='30' id= i++)
-      form(action='/restaurant/'+ restaurants.id, method='post').buttons  
-        button.green
+      form(action='/restaurant/'+ restaurants.id + '/delete', method='post').buttons  
+        button.green(type='button')
           a(href='/restaurant/' + restaurants.id + '/edit') Edit
         button.red(type='submit' name='button' value='delete')
           a Delete

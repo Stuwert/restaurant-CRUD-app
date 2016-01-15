@@ -1,54 +1,38 @@
-extend ../layout
-block content
+extends ../index
 
-  mixin fermies(thing)
+block body
+  form.ferm(method='post' action= restaurants ? '/restaurant/' + restaurants.id : '/restaurant')
+    h3.labelform= restaurants ? 'Update Restaurant' : 'New Restaurant'
     label Name 
-    input(type="text" name="name" placeholder='Restaurant Name' value= restaurants.name) 
+    input(type="text" name="name" placeholder='Restaurant Name' value=restaurants ? restaurants.name : "") 
     label Location
-    input(type='text' name='city' placeholder='City' value= restaurants.location.city)
+    input(type='text' name='city' placeholder='City' value= restaurants ? restaurants.city : "")
     select(name='state')
       for val, index in states
-        if index == states.indexOf(restaurants.location.state)
-          option(value= val selected='selected')= val
-        else
-          option(value= val)= val
+        if restaurants && index == states.indexOf(restaurants.state)
+            option(value= val selected='selected')= val
+          else
+            option(value= val)= val
     label Cuisine  
     select(name='cuisine')
       for val, index in cuisine
-        if index == cuisine.indexOf(restaurants.cuisine)
-          option(value= val selected='selected')= val
-        else
-          option(value= val)= val
+        if restaurants && index == cuisine.indexOf(restaurants.cuisine)
+            option(value= val selected='selected')= val
+          else
+            option(value= val)= val
     label Rating
     div.ratings
       - var n = 1
       while n<=5
-        if n == restaurants.rating
-          input(name='rating' type='radio' checked='checked' value= n++)
-        else
-          input(name='rating' type='radio' value= n++)
+        if restaurants && n == restaurants.rating
+            input(name='rating' type='radio' checked='checked' value= n++)
+          else
+            input(name='rating' type='radio' value= n++)
     label Image
-    input(type='text' name='img' value= restaurants.img placeholder='Image URL')
-    textarea(value= restaurants.description cols='40', rows='8', name='description' placeholder='Short bio')
-    
-  
-  include header
-  main
-    if restaurants.id == null
-      form.ferm(method='post' action='/restaurant')
-        h3.labelform New Restaurant
-        +fermies
-        div.buttons
-          button.green(type='submit') 
-            a Create
-          button.red 
-            a(href='/') Cancel
-    else
-      form.ferm(method='post' action='/restaurant/' + restaurants.id)
-        h3.labelform Update Restaurant
-        +fermies
-        div.buttons
-          button.green(type='submit') 
-            a Update
-          button.red
-            a(href='/') Cancel
+    input(type='text' name='img' value= restaurants ? restaurants.img : "" placeholder='Image URL')
+    textarea(cols='40', rows='8', name='description' placeholder='Short bio')= restaurants ? restaurants.description : ""
+    div.buttons
+      button.green(type='submit') 
+        a= restaurants ? 'Update' : 'Create'
+      button.red 
+        a(href='/') Cancel

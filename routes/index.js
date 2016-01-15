@@ -4,72 +4,48 @@ var controller = require('../controls/app')
 var states = require('../db/states')
 var cuisine = require('../db/cuisine')
 var router = express.Router();
-var object = {
-  name: null,
-  location: {
-    city: null,
-    state: null
-  },
-  cuisine : null,
-  rating: null,
-  img: null,
-  description: null,
-}
 
 /* GET home page. */
 
 //Read request all
 router.get('/', function(req, res, next) {
-  controller.read(req, res);
+  controller.read(req, res, "", "locations");
 });
 
 //Create new, form
 router.get('/restaurant/new', function(req, res, next){
-  res.render('restaurants/new', {restaurants: object, states: states, cuisine: cuisine})
+  res.render('restaurants/new', {states: states, cuisine: cuisine})
+})
+
+//Create new table item
+router.post('/restaurant', function(req, res, next){
+  controller.create(req, res, "locations");
 })
 
 //Edit form
 router.get('/restaurant/:id/edit', function(req, res, next){
-  controller.readSpec(req, res, 'new')
+  controller.readSpec(req, res, 'new', 'locations')
 })
 
-router.post('/restaurant', function(req, res, next){
-  object = {
-    name: req.body.name,
-    location: {
-      city: req.body.city,
-      state: req.body.state
-    },
-    cuisine : req.body.cuisine,
-    rating: req.body.rating,
-    img: req.body.img,
-    description: req.body.description,
-  }
-  controller.create(res, object)
+//Get Admin Form
+router.get('/restaurant/admin', function(req, res, next){
+  controller.read(req, res, 'admin', 'employees')
 })
 
-//Read request one
+
+//Read request single table element
 router.get('/restaurant/:id', function(req, res, next){
-  controller.readSpec(req, res, 'view');
+  controller.readSpec(req, res, 'view', 'locations');
 })
 
+//Update thing.
 router.post('/restaurant/:id', function(req, res, next){
-  if (req.body.button === 'delete'){
-    controller.delete(req, res);
-  }else{
-    object = {
-      name: req.body.name,
-      location: {
-        city: req.body.city,
-        state: req.body.state
-      },
-      cuisine : req.body.cuisine,
-      rating: req.body.rating,
-      img: req.body.img,
-      description: req.body.description,
-    }
-    controller.update(req, res, object)
-  }
+  controller.update(req, res, 'locations')
+})
+
+//Delete item
+router.post('/restaurant/:id/delete', function(req, res, next){
+  controller.delete(req, res, "locations");
 })
 
 
@@ -77,5 +53,5 @@ module.exports = router;
 
 
 function restaurants(){
-  return knex('mexican');
+  return knex('locations');
 }
