@@ -58,10 +58,11 @@ var commands = {
   },
 
   join: function(req, res, db){
-    restaurants('location').join(db, 'location.id', '=', db + '.restaurant_id').select().then(function(result){
+    restaurants('location').join(db, 'location.id', '=', db + '.restaurant_id').where('id', req.params.id).first().then(function(result){
       console.log(result);
     });
-  }
+  },
+
 }
 
 

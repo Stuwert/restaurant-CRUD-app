@@ -4,9 +4,9 @@ var controller = require('../controls/app')
 var states = require('../db/states')
 var cuisine = require('../db/cuisine')
 var router = express.Router();
-var app = express();
 
-var reviews = require('./reviews')
+
+
 /* GET home page. */
 
 //Read request all
@@ -34,16 +34,6 @@ router.get('/restaurant/:id/', function(req, res, next){
 //Edit form
 router.get('/restaurant/:id/edit', function(req, res, next){
   controller.readSpec(req, res, 'new', 'locations')
-})
-
-//Get Admin Form
-router.get('/restaurant/:id/admin', function(req, res, next){
-  controller.read(req, res, 'admin', 'employees')
-})
-
-//Get Review Form
-router.get('/restaurant/:id/reviews/new', function(req, res, next){
-  controller.read(req, res, 'admin', 'employees')
 })
 
 //Get Review Form
