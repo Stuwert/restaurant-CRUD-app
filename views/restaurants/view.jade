@@ -4,7 +4,8 @@ block content
 
   header
     h1= restaurant.name
-    a(href='/') Return to Homepage
+    div
+      a(href='/') Return to Homepage
   main
     img(src=restaurant.img, height='350px' width='350px')
     div.detail
@@ -17,13 +18,19 @@ block content
         div.stars
           - var i = 1;
           while i <= restaurant.rating
-            img(src='/images/star.png' height='30' width='30' id= i++)
+            img(src='/images/star.png' height='30' width='30' class= i++)
       a(href='/restaurant/' + restaurant.id + '/review/new')
         button(type='button') Add a Review
-    each review in reviews
-      div
-        p= review.reviewer_name
-        p= review.date
-        p= review.rating
-        p= review.review
+    div.reviews
+      each review in reviews
+        div.individualreview
+          div.header
+            h4= review.reviewer_name
+            p= review.date
+          p= review.review
+          - var i =0
+          while i <= review.rating
+            img(src='/images/star.png' height='30' width='30' class=i++)
+          a(href='/restaurant/' + restaurant.id + '/review/' + review.id)
+            button(type=button) Edit
       
