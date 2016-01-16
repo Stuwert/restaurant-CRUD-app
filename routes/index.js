@@ -1,38 +1,23 @@
 var express = require('express');
 var knex = require('../db/knex');
-var controller = require('../controls/app')
+var controller = require('../controls/restaurantcontroller')
 var states = require('../db/states')
 var cuisine = require('../db/cuisine')
 var router = express.Router();
 
 /* GET home page. */
 
+router.get('/', function(req, res, next){
+  res.redirect('/restaurants')
+})
+
 //Read request all
-router.get('/', function(req, res, next) {
-  controller.read(req, res, "", "locations");
-});
+router.get('/restaurants', controller.renderAllRestaurants);
 
-//Create new, form
-router.get('/restaurant/new', function(req, res, next){
-  res.render('restaurants/new', {states: states, cuisine: cuisine, action: '/restaurants'})
-})
+//Read request single restaurant
+router.get('/restaurant/:id/', controller.renderSingleRestaurant);
 
-//Create new table item
-router.post('/restaurant', function(req, res, next){
-  controller.create(req, res, "locations");
-})
-
-//Read request single table element
-router.get('/restaurant/:id/', function(req, res, next){
-  controller.readSpec(req, res, 'view', 'locations', 'id');
-})
-
-
-
-//Edit form
-router.get('/restaurant/:id/edit', function(req, res, next){
-  controller.readSpec(req, res, 'new', 'locations', 'id')
-})
+//Read Request Single Review
 
 
 //Update thing.

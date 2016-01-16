@@ -37,6 +37,20 @@ router.post('/restaurant/:restaurantid/employee/:id/delete', function(req, res, 
   controller.delete(req, res, 'employees')
 })
 
+//Create new restaurant, form
+router.get('/restaurant/new', function(req, res, next){
+  res.render('restaurants/new', {states: states, cuisine: cuisine, action: '/restaurants'})
+})
+
+//Create new restaurant
+router.post('/restaurant', function(req, res, next){
+  controller.create(req, res, "locations");
+})
+
+//Edit form
+router.get('/restaurant/:id/edit', function(req, res, next){
+  controller.readSpec(req, res, 'new', 'locations', 'id')
+})
 
 
 module.exports = router;
