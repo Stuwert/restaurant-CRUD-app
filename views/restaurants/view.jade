@@ -26,11 +26,12 @@ block content
         div.individualreview
           div.header
             h4= review.reviewer_name
-            p= review.date
+            p.dateslice= review.date.toString().substring(0, 15)
           p= review.review
-          - var i =0
-          while i <= review.rating
-            img(src='/images/star.png' height='30' width='30' class=i++)
+          - var i =1
+          div.stars
+            while i <= review.rating
+              img(src='/images/star.png' height='20' width='20' class=i++)
           a(href='/restaurant/' + restaurant.id + '/review/' + review.id)
             button(type=button) Edit
       

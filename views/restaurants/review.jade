@@ -1,6 +1,33 @@
 extend ../index
 
-  blocks navbar
+block navbar
   
-  blocks body
+  
+block body
+  
+  form.ferm(method='post' action= review ? '/restaurant/' + restaurant.id  + '/review/' + review.id : '/restaurant/' + restaurant.id  + '/review')
+    if review
+      h3 Update your #{restaurant.name} review
+    else
+      h3 Create a review for #{restaurant.name}
+    label Name
+    input(type='text' name='reviewer_name' value= review ? review.reviewer_name : "")
+    label Rating
+    div.ratings
+      - var n = 1
+      while n<=5
+        if review && n == review.rating
+            input(name='rating' type='radio' checked='checked' value= n++)
+          else
+            input(name='rating' type='radio' value= n++)
+    textarea(cols='40', rows='8', name='review' placeholder='What would you say to someone who wants to eat hear?')= review ? review.review : ""
+    div.buttons
+      button.green Submit
+      a.red(href='/restaurant/' + restaurant.id) Cancel
+  if review
+    form.ferm(method='post' action='/restaurant/' + restaurant.id + '/review/' + review.id + '/delete')
+      input(type='text' placeholder='Type the name of the restaurant to delete')
+      div.buttons
+        button.red.delete Delete
     
+  

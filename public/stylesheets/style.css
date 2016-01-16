@@ -104,17 +104,17 @@ main .detail{
   margin: 0 5px;
 }
 
-.buttons button{
+.buttons button, .buttons a{
   width: 45%;
   height: 100%;
   border-radius: 5px;
   box-shadow: none;
   border: none;
-}
-
-.buttons button a{
-  font-weight: lighter;
-  color: #3d3937;
+  text-align: center;
+  text-decoration: none;
+  padding: 4px 0;
+  color: inherit;
+  font-size: 16px;
 }
 
 .buttons{
@@ -168,7 +168,7 @@ main .detail{
 
 .ferm{
   width: 90%;
-  height: 500px;
+  height: auto;
   margin: 30px 5%;
   display: flex;
   flex-direction: column;
@@ -176,14 +176,19 @@ main .detail{
   align-items: flex-start;
   justify-content: space-around;
   position: relative;
-  padding: 5px;
+  padding: 20px 5px;
 }
+
+.ferm > *{
+  margin: 10px 0;
+}
+
 
 .ferm h3{
   position: absolute;
   font-size: 18px;
   left: 5px;
-  top: -12px;
+  top: -20px;
   background-color: white;
 }
 
@@ -215,13 +220,26 @@ main .detail{
 }
 
 .individualreview{
-  width: 96%;
-  margin: 2%;
+  width: 50%;
+  margin: 2% 25%;
+  height: 150px;
   background-color: #FFFFFF;
   border: 2px solid #89dd9d;
   border-radius: 5px;
   position: relative;
   color: #a1a1a1;
+}
+
+.individualreview .stars{
+  position: absolute;
+  bottom: 5px;
+  width: 100px;
+  height: auto;
+}
+
+.individualreview img{
+  float: left;
+  margin: 0;
 }
 
 .individualreview a{
@@ -250,4 +268,8 @@ main .detail{
   background-color: transparent;
   text-decoration: underline;
   color: #a1a1a1;
+}
+
+.buttons .delete{
+  width: 100%;
 }

@@ -7,6 +7,7 @@ var router = express.Router();
 
 /* GET home page. */
 
+//Auto redirects index to restaurants
 router.get('/', function(req, res, next){
   res.redirect('/restaurants')
 })
@@ -14,61 +15,20 @@ router.get('/', function(req, res, next){
 //Read request all
 router.get('/restaurants', controller.renderAllRestaurants);
 
+// Post a new Review
+router.post('/restaurant/:id/review/', controller.createNewReview);
+
 //Read request single restaurant
 router.get('/restaurant/:id/', controller.renderSingleRestaurant);
 
-//Read Request Single Review
+//Create a new Review
+router.get('/restaurant/:id/review/:reviewid', controller.createEditReview);
 
+//Delete a Review
+router.post('/restaurant/:id/review/:reviewid/delete', controller.deleteReview);
 
-//Update thing.
-router.post('/restaurant/:id', function(req, res, next){
-  controller.update(req, res, 'locations')
-})
-
-//Delete item
-router.post('/restaurant/:id/delete', function(req, res, next){
-  controller.delete(req, res, "locations");
-})
-
-
-// **********  Reviews
-// **********  Reviews
-
-//All reviews for a restaurant
-router.get('/restaurant/:id/review', function(req, res, next){
-  controller.read(req, res, "allreviews", 'reviews')
-})
-
-//Create new restaurant review
-router.post('/restaurant/:id/review', function(req, res, next){
-  controller.create(req, res, 'reviews');
-})
-
-//Form to create a new restaurant review
-router.get('/restaurant/:id/review/new', function(req, res, next){
-  res.render('restaurants/editreview');
-})
-
-//Read Single review for a restaurant
-router.get('/restaurant/:restaurantid/review/:id', function(req, res, next){
-  controller.read(req, res, 'review', 'reviews');
-})
-
-//Form to Update Restaurant review
-router.get('/restaurant/:restaurantid/review/:id/edit', function(req, res, next){
-  controller.readSpec(req, res, 'editreview', 'reviews')
-})
-
-//Update restaurant review
-router.post('/restaurant/:restaurantid/review/:id', function(req, res, next){
-  controller.updateReview(req, res);
-})
-
-//Delete restaurant review
-router.post('/restaurant/:restaurantid/review/:id/delete', function(req, res, next){
-  controller.delete(req, res, 'reviews')
-})
-
+//Update a Review
+router.post('/restaurant/:id/review/:reviewid', controller.updateReview);
 
 module.exports = router;
 
