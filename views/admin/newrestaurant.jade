@@ -1,0 +1,30 @@
+extends ../admin
+
+block body
+  form.ferm(method='post' action= restaurant ? '/admin/restaurant/' + restaurant.id + '/edit' : '/admin/restaurant')
+    h3.labelform= restaurant ? 'Update Restaurant' : 'New Restaurant'
+    label Name 
+    input(type="text" name="name" placeholder='Restaurant Name' value=restaurant ? restaurant.name : "") 
+    label Location
+    input(type='text' name='city' placeholder='City' value= restaurant ? restaurant.city : "")
+    select(name='state')
+      for val, index in states
+        if restaurant && index == states.indexOf(restaurant.state)
+            option(value= val selected='selected')= val
+          else
+            option(value= val)= val
+    label Cuisine  
+    select(name='cuisine')
+      for val, index in cuisine
+        if restaurant && index == cuisine.indexOf(restaurant.cuisine)
+            option(value= val selected='selected')= val
+          else
+            option(value= val)= val
+    label Image
+    input(type='text' name='img' value= restaurant ? restaurant.img : "" placeholder='Image URL')
+    textarea(cols='40', rows='8', name='description' placeholder='Short bio')= restaurant ? restaurant.description : ""
+    div.buttons
+      button.green(type='submit') 
+        a= restaurant ? 'Update' : 'Create'
+      button.red 
+        a(href= restaurant ? '/admin/restaurant/' + restaurant.id : "/admin") Cancel

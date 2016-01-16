@@ -7,7 +7,7 @@ block content
     div
       a(href='/admin') Return to Admin
 
-  main
+  main.admin
     img(src=restaurant.img, height='350px' width='350px')
     div.detail
       div
@@ -22,10 +22,10 @@ block content
             img(src='/images/star.png' height='30' width='30' id= i++)
       form.buttons(action='/admin/restaurant/'+ restaurant.id + '/delete', method='post')  
         button.green(type='button')
-          a(href='/admin/restaurant/' + restaurant.id + '/edit') Edit
+          a(href='/admin/restaurant/' + restaurant.id + '/edit') Edit Restaurant
         button.red(type='submit' name='button' value='delete') Delete
-        button.green(type='button')
-          a(href='admin/restaurant/' + restaurant.id + '/employee/new') New Hire
+        button.newhire(type='button')
+          a(href='/admin/restaurant/' + restaurant.id + '/employee/new') New Hire
   if employees
     div.restaurantemployees
       each employee in employees
@@ -41,6 +41,6 @@ block content
               while i <= employee.performance
                 img(src='/images/star.png' width='20' height='20' class=i++)
             div.buttons
-              a(href='/admin/employee/' + employee.id + '/edit') Update
               form(action='/admin/employee/' + employee.id + '/delete' method='post')
+                a(href='/admin/employee/' + employee.id + '/edit') Update
                 button Remove From Employment

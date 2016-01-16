@@ -4,8 +4,8 @@ block navbar
     
 block body
   div.left
+    h2 Restaurants
     each restaurant in restaurants
-      h2 Restaurants
       div.restaurant
         div.header
           h3
@@ -20,9 +20,10 @@ block body
             - var i=1
             while i<= restaurant.rating
               img(src='/images/star.png' width='15' height='15' class=i++)
+    a(href='/admin/restaurant/new') Create New Restaurant
   div.right
+    h2 Employees
     each employee in employees
-      h2 Employees
       div.employee 
         div.header
           h3
