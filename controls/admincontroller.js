@@ -60,6 +60,39 @@ var commands = {
     Restaurants().where('id', req.params.id).delete().then(function(){
       res.redirect('/admin')
     })
+  },
+  createUpdateEmployee: function(req, res){
+    Employees().where('id', req.params.eid).first().then(function(result){
+      res.render('admin/editemployee', {positions: positions, employee: result, restaurant: {id: req.params.id}})
+    })
+  },
+  createEmployee: function(req, res){
+    Employees().insert({
+      first_name: req.body.first,
+      last_name: req.body.last,
+      position: req.body.position,
+      restaurant_id: req.params.id,
+      performance: req.body.performance
+    }, 'id').then(function(result){
+      console.log(result)
+      res.redirect('/admin/')
+    })
+  },
+  updateEmployee: function(req, res){
+    Employees().where('id', req.params.eid).update({
+      first_name: req.body.first_name,
+      last: req.body.first_name,
+      position: req.body.position,
+      performance: req.params.performance
+    }).then(function(result){
+      res.redirect('/admin')
+    })
+  },
+
+  deleteEmployee: function(req, res){
+    Employees().where('id', req.params.eid).delete().then(function(){
+      res.redirect('/admin/restaurant/' + req.params.id)
+    })
   }
 
 }

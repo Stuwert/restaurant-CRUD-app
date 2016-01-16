@@ -1,15 +1,25 @@
-extend ../index
+extend ../layout
 
-block navbar
+block content
+  header.admin
+    h1= employee ? employee.first_name + ' ' + employee.last_name : "Enter Your New Hire Information"
 
-block body
-  form(method='post' action=action)
+
+  form.ferm(method='post' action= employee ? '/admin/employee/' + employee.id + '/edit' : '/admin/restaurant/' + restaurant.id + '/employee')
     label First Name
     input(name='first' value= employee ? employee.first_name : "")
     label Last Name
     input(name='last' value= employee ? employee.last_name : "")
     label Position
+    div.ratings
+      - var n = 1
+      while n<=5
+        if employee && n == employee.performance
+            input(name='performance' type='radio' checked='checked' value= n++)
+          else
+            input(name='performance' type='radio' value= n++)
     select(name='position')
       each position in positions
         option(value=position select= employee && employee.position === position ? selected : false)= position
-    button(type='submit') Submit
+    div.buttons
+      button(type='submit') Update

@@ -31,8 +31,7 @@ block content
       each employee in employees
         div.employee
           div.header
-            h3
-              a(href='#')= employee.first_name + ' ' + employee.last_name
+            h3= employee.first_name + ' ' + employee.last_name
           div.rest
             div.position
               p= employee.position
@@ -41,6 +40,6 @@ block content
               while i <= employee.performance
                 img(src='/images/star.png' width='20' height='20' class=i++)
             div.buttons
-              form(action='/admin/employee/' + employee.id + '/delete' method='post')
-                a(href='/admin/employee/' + employee.id + '/edit') Update
+              form(action='/admin/restaurant/' + restaurant.id + '/employee/' + employee.id + '/delete' method='post')
+                a(href='/admin/restaurant/' + restaurant.id + '/employee/' + employee.id + '/edit') Update
                 button Remove From Employment

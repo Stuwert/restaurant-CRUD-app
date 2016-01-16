@@ -26,4 +26,19 @@ router.get('/restaurant/:id/edit', controller.createUpdateRestaurant);
 //Post request to delete restaurant
 router.post('/restaurant/:id/delete', controller.deleteRestaurant);
 
+//View Form to Create employee
+router.get('/restaurant/:id/employee/new', controller.createUpdateEmployee)
+
+//View Form to Update employee
+router.get('/restaurant/:id/employee/:eid/edit', controller.createUpdateEmployee)
+
+//Delete employee post request
+router.post('/restaurant/:id/employee/:eid/delete', controller.deleteEmployee);
+
+//Post request to create Employees
+router.post('/restaurant/:id/employee', controller.createEmployee);
+
+//Post request to update Employees
+router.post('/restaurant/:id/employee/:eid/edit', controller.updateEmployee)
+
 module.exports = router;
