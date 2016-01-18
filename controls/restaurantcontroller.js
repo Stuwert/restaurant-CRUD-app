@@ -9,7 +9,9 @@ var commands = {
 
   renderAllRestaurants: function(req, res){
     Restaurants().select().table('locations').then(function(result){
-      res.render('restaurants/index', {restaurants: result});
+      Reviews().select().table('reviews').then(function(rezult){
+        res.render('restaurants/index', {restaurants: result, reviews: rezult});
+      })
     })
   },
 
@@ -31,7 +33,7 @@ var commands = {
   },
 
   createNewReview: function(req, res){
-    console.log(req.body);
+
     Reviews().insert({
       reviewer_name: req.body.reviewer_name,
       date: new Date(),

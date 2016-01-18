@@ -14,7 +14,18 @@ block body
         img(src= val.img, height='125' width='125')
         p= val.cuisine
         p= val.city + ', ' + val.state
+        - var counter = 0
+        each valz in reviews
+          if valz.restaurant_id = val.id
+            - counter++
+        p Reviews: #{counter}
         div
+          - var totalstarz = 0
+          - var count = 0
+          each valz in reviews
+            if valz.restaurand_id = val.id
+              - count++
+              - totalstarz += valz.rating
           - var i = 1
-          while i <= val.rating
+          while i <= totalstarz / count
             img(src='/images/star.png' height='25' width='25' id= i++)
