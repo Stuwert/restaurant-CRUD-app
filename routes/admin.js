@@ -1,12 +1,19 @@
 var express = require('express');
 var knex = require('../db/knex');
 var controller = require('../controls/admincontroller')
+var neighborhood = require('../controls/neighborhoodscontroller')
 var states = require('../db/states')
 var cuisine = require('../db/cuisine')
 var router = express.Router();
 
 //View all restaurants and employees
 router.get('/', controller.readAll);
+
+//Create a new neighborhood form
+router.get('/neighborhoods/new', neighborhood.createEditNeighborhood);
+
+//Post a new neighborhood
+router.post('/neighborhoods', neighborhood.createNeighborhood);
 
 //Post request to make restaurant
 router.post('/restaurant', controller.createNewRestaurant);

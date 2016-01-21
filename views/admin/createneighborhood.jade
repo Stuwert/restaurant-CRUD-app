@@ -1,0 +1,19 @@
+extends ../admin
+
+block body
+  
+  form.ferm(method='post' action='/admin/neighborhoods')
+    label Neighborhood Name
+    input(type='text' name='name')
+    label Street Address
+    input(type='text' name='address')
+    label City
+    input(type='text' name='city' placeholder='City' value= restaurant ? restaurant.city : "")
+    label State
+    select(name='state')
+      for val, index in states
+        if restaurant && index == states.indexOf(restaurant.state)
+            option(value= val selected='selected')= val
+          else
+            option(value= val)= val
+    button Submit

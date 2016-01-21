@@ -2,9 +2,11 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('neighborhoods', function(table){
     table.increments()
-    table.timestamps()
     table.string('name')
     table.json('epicenter')
+    table.string('county')
+    table.string('city')
+    table.string('state')
   })
 };
 
