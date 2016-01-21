@@ -6,9 +6,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var dotenv = require('dotenv').load();
 
-var routes = require('./routes/index');
+var routes = require('./routes/index')
+var restaurants = require('./routes/restaurants');
 var admin = require('./routes/admin')
 var employees = require('./routes/employees')
+var neighborhoods = require('./routes/neighborhoods')
 
 
 var app = express();
@@ -26,8 +28,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/restaurants', restaurants);
 app.use('/admin', admin);
 app.use('/admin/restaurant', employees);
+app.use('/neighborhoods', neighborhoods);
 
 
 // catch 404 and forward to error handler

@@ -10,13 +10,15 @@ module.exports = {
 
   readNeighborhood: function(req,res){
     Neighborhoods().where('id', req.params.id).first().then(function(result){
-      res.render('restaurants/neighborhood', {title: result.name, epicenter: result.epicenter})
+      Restaurants().where('neighborhood_id', req.params.id).then(function(restaurants){
+        res.render('neighborhood/view', {title: result.name, epicenter: result.epicenter, restaurants: restaurants})
+      })
     })
   },
 
   readAllNeighborhoods:function(req, res){
     Neighborhoods().select().then(function(results){
-      res.render('restaurants/neighborhoodsindex', {neighborhoods: results})
+      res.render('neighborhood/index', {neighborhoods: results})
     })
   },
   createNeighborhood: function(req, res){
@@ -47,4 +49,8 @@ module.exports = {
 
 function Neighborhoods(){
   return knex('neighborhoods');
+}
+
+function Restaurants(){
+  return knex('locations')
 }

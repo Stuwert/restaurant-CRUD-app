@@ -1,18 +1,15 @@
 extends ../index
 
 block navbar
-  div
-    a(href='/admin')
-      p Admin Panel
 
 block body
   each neighborhood, i in neighborhoods
     div
-      h3= neighborhood.name
+      h3
+        a(href='/neighborhoods/' +neighborhood.id )= neighborhood.name
       p= neighborhood.county
       p #{neighborhood.city}, #{neighborhood.state}
       div(id='map_canvas' + i, style='height:300px; width: 300px; border: 1px solid #888')
-      button(id='change' + i)
 
   script.
     var map = {};
@@ -25,9 +22,5 @@ block body
         })
       })
     }
-    
-    //- document.getElementById('change0').addEventListener('click', function(){
-    //-   alert(map['map0'].getCenter());
-    //-   })
     
   script(async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGvRKGXRbAW1TT-Ls0Rw6YX1jEHkyvwg0&callback=initMap")
