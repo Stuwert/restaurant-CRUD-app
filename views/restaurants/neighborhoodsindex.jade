@@ -1,0 +1,29 @@
+extends ../index
+
+block navbar
+  div
+    a(href='/admin')
+      p Admin Panel
+
+block body
+  each neighborhood, i in neighborhoods
+    div
+      h3= neighborhood.name
+      p= neighborhood.county
+      p #{neighborhood.city}, #{neighborhood.state}
+      div(id='map_canvas' + i, style='height:300px; width: 300px; border: 1px solid #888')
+    
+
+  script.
+    var map = {};
+    var array = !{JSON.stringify(neighborhoods)}
+    function initMap(){
+      array.forEach(function(item, i){
+        map['map' + i] = new google.maps.Map(document.getElementById('map_canvas' + i), {
+          center: item.epicenter,
+          zoom: 10
+        })
+      })
+    }
+    
+  script(async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGvRKGXRbAW1TT-Ls0Rw6YX1jEHkyvwg0&callback=initMap")

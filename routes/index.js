@@ -3,7 +3,7 @@ var knex = require('../db/knex');
 var controller = require('../controls/restaurantcontroller')
 var states = require('../db/states')
 var cuisine = require('../db/cuisine')
-var neighorhood = require('../controls/neighborhoodscontroller')
+var neighborhood = require('../controls/neighborhoodscontroller')
 var router = express.Router();
 var holderobj;
 
@@ -14,8 +14,10 @@ router.get('/', function(req, res, next){
   res.redirect('/restaurants')
 })
 
+router.get('/neighborhoods', neighborhood.readAllNeighborhoods);
+
 //Read a neighborhood
-router.get('/neighborhoods/:id', neighorhood.readNeighborhood);
+router.get('/neighborhoods/:id', neighborhood.readNeighborhood);
 
 //Read request all
 router.get('/restaurants', controller.renderAllRestaurants);

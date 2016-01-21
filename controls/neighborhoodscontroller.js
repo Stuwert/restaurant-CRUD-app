@@ -10,8 +10,13 @@ module.exports = {
 
   readNeighborhood: function(req,res){
     Neighborhoods().where('id', req.params.id).first().then(function(result){
-      console.log(result.epicenter.lat);
       res.render('restaurants/neighborhood', {title: result.name, epicenter: result.epicenter})
+    })
+  },
+
+  readAllNeighborhoods:function(req, res){
+    Neighborhoods().select().then(function(results){
+      res.render('restaurants/neighborhoodsindex', {neighborhoods: results})
     })
   },
   createNeighborhood: function(req, res){
