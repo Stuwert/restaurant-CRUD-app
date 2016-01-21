@@ -2,6 +2,7 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('locations', function(table){
     table.increments();
+    table.timestamps();
     table.string('name');
     table.json('location');
     table.string('cuisine');
