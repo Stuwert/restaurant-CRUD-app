@@ -6,8 +6,9 @@ exports.up = function(knex, Promise) {
     table.string('first_name')
     table.string('last_name')
     table.string('position')
-    table.integer('restaurant_id')
     table.integer('performance')
+    table.integer('restaurant_id')
+
   })
 };
 

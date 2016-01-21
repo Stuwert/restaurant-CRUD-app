@@ -8,8 +8,13 @@ exports.up = function(knex, Promise) {
     table.string('cuisine');
     table.integer('rating');
     table.string('img');
+    table.integer('house_number')
+    table.string('street1')
+    table.string('street2')
     table.string('city');
     table.string('state');
+    table.integer('zip');
+    table.integer('neighborhood_id')
     table.text('description');
   })
 };

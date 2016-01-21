@@ -4,11 +4,7 @@ exports.up = function(knex, Promise) {
     table.increments()
     table.timestamps()
     table.string('name')
-    table.integer('house_number')
-    table.string('street')
-    table.string('city')
-    table.string('state')
-    table.integer('zip')
+    table.string('epicenter')
   })
 };
 
