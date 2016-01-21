@@ -1,0 +1,27 @@
+extends ../layout
+
+block content
+  header
+    h1= title
+
+
+  main
+    
+    div#map(style='height:300px; width: 300px; border: 1px solid #888')
+    div Restaurants
+      
+
+
+  script.
+    var map;
+    var epicenter = {
+      lat: #{epicenter.lat},
+      lng: #{epicenter.lng}
+    }
+    function initMap(){
+      map = new google.maps.Map(document.getElementById('map'), {
+      center: epicenter,
+      zoom: 10
+      });
+    }
+  script(async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGvRKGXRbAW1TT-Ls0Rw6YX1jEHkyvwg0&callback=initMap")

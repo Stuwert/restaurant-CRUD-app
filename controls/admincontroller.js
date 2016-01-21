@@ -1,6 +1,5 @@
 var knex = require('../db/knex')
 var express = require('express');
-var router = express.Router();
 var states = require('../db/states')
 var cuisine = require('../db/cuisine')
 var positions = require('../db/positions')

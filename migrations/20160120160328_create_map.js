@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
     table.increments()
     table.timestamps()
     table.string('name')
-    table.string('epicenter')
+    table.json('epicenter')
   })
 };
 
