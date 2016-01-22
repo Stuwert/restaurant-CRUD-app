@@ -10,7 +10,7 @@ var holderobj;
 router.get('/', controller.renderAllRestaurants);
 
 // Post a new Review
-router.post('/restaurant/:id/review/', function(req, res){
+router.post('/:id/reviews/', function(req, res){
   if(req.body.reviewer_name !== '' && req.body.rating !== undefined && req.body.review !== ''){
     controller.createNewReview(req, res);
     holderobj = undefined;
@@ -24,7 +24,7 @@ router.post('/restaurant/:id/review/', function(req, res){
 router.get('/:id/', controller.renderSingleRestaurant);
 
 //Create a new Review
-router.get('/:id/review/new', function(req, res){
+router.get('/:id/reviews/new', function(req, res){
   if (holderobj !== undefined){
     res.render('restaurants/review', {restaurant: req.params, review: holderobj});
   }else{
@@ -34,7 +34,7 @@ router.get('/:id/review/new', function(req, res){
 });
 
 //Get form to edit a review
-router.get('/:id/review/:reviewid/edit', function(req, res){
+router.get('/:id/reviews/:reviewid/edit', function(req, res){
   if(holderobj !== undefined){
     res.render('restaurants/review', {restaurant: req.params, review: holderobj});
   }else{
@@ -44,10 +44,10 @@ router.get('/:id/review/:reviewid/edit', function(req, res){
 
 
 //Delete a Review
-router.post('/:id/review/:reviewid/delete', controller.deleteReview);
+router.post('/:id/reviews/:reviewid/delete', controller.deleteReview);
 
 //Update a Review
-router.post('/:id/review/:reviewid', function(req, res){
+router.post('/:id/reviews/:reviewid', function(req, res){
   if(req.body.reviewer_name !== '' && req.body.rating !== undefined && req.body.review !== ''){
     controller.updateReview(req, res);
     holderobj = undefined;

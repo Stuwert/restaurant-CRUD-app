@@ -20,19 +20,19 @@ block content
           while i <= avgrating
             img(src='/images/star.png' height='30' width='30' class= i++)
       div.buttons
-        a(href='/restaurants/' + restaurant.id + '/review/new')
+        a(href='/restaurants/' + restaurant.id + '/reviews/new')
           button.green(type='button') Add a Review
     div.reviews
       each review in reviews
         div.individualreview.table
           div.tableheader
             h4= review.reviewer_name
-            p.dateslice= review.created_at.toString().substring(0, 15)
+            p.dateslice= review.updated_at ? review.updated_at.toString().substring(0, 15) : review.created_at.toString().substring(0, 15)
           div.tablebody
             p= review.review
             - var i =1
             div.rating
               while i <= review.rating
                 img(src='/images/star.png' height='20' width='20' class=i++)
-            a.tablemore(href='/restaurants/' + restaurant.id + '/review/' + review.id + '/edit') Edit
+            a.tablemore(href='/restaurants/' + restaurant.id + '/reviews/' + review.id + '/edit') Edit
       

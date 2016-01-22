@@ -36,12 +36,12 @@ var commands = {
 
     Reviews().insert({
       reviewer_name: req.body.reviewer_name,
-      date: new Date(),
       rating: req.body.rating,
       review: req.body.review,
-      restaurant_id: req.params.id
+      restaurant_id: req.params.id,
+      created_at: new Date()
     }, 'id').then(function(){
-      res.redirect('/restaurant/' + req.params.id)
+      res.redirect('/restaurants/' + req.params.id)
     })
   },
 
@@ -54,11 +54,11 @@ var commands = {
   updateReview: function(req, res){
     Reviews().where('id', req.params.reviewid).update({
       reviewer_name: req.body.reviewer_name,
-      date: new Date(),
       rating: req.body.rating,
       review: req.body.review,
+      updated_at: new Date()
     }).then(function(result){
-      res.redirect('/restaurant/' + req.params.id)
+      res.redirect('/restaurants/' + req.params.id)
     })
   },
 }
