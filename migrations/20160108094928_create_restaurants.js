@@ -10,7 +10,8 @@ exports.up = function(knex, Promise) {
     table.string('city');
     table.string('state');
     table.integer('zip');
-    table.integer('neighborhood_id')
+    table.integer('neighborhood_id');
+    table.json('epicenter')
     table.text('description');
   })
 };
