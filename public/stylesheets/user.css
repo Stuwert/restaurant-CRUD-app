@@ -72,10 +72,6 @@ main.header .buttons{
   height: 75px;
 }
 
-main.header button{
-  margin: 0 20px;
-}
-
 /*Defining a floatbox type of element*/
 
 .floatBox{

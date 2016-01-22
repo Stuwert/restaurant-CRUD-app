@@ -3,12 +3,13 @@ extends ../admin
 block body
   
   form.form(method='post' action='/admin/neighborhoods')
+    h3 Create a Neighborhood
     label Neighborhood Name
     input(type='text' name='name')
     label Street Address
     input(type='text' name='address')
     label City
-    input(type='text' name='city' placeholder='City' value= restaurant ? restaurant.city : "")
+    input(type='text' name='city' placeholder='City')
     label State
     select(name='state')
       for val, index in states
@@ -16,4 +17,7 @@ block body
             option(value= val selected='selected')= val
           else
             option(value= val)= val
-    button Submit
+    div.buttons
+      button.green Submit
+      button.red 
+        a(href='/admin') Cancel

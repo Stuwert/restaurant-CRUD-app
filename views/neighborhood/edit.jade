@@ -1,0 +1,39 @@
+extends ../adminlayout
+
+block content
+  header
+    h1= neighborhood.name
+    div
+      a(href='/admin') Return to Admin
+
+  main.neighborhoodView
+    form.form(method='post' action='/admin/neighborhoods/' + neighborhood.id)
+      h3 Edit 
+      div#map
+      button#update(type='button') Update Location
+      input.hidden#epicenter(value= JSON.stringify(neighborhood.epicenter) name='epicenter')
+      label Neighborhood Name
+      input(type='text' name='name' value=neighborhood.name)
+      label City
+      input(type='text' name='city' placeholder='City' value= neighborhood.city)
+      label State
+      select(name='state')
+        for val, index in states
+          if  index == states.indexOf(neighborhood.state)
+              option(value= val selected='selected')= val
+            else
+              option(value= val)= val
+      div.buttons
+        button.green Submit
+        button.red 
+          a(href='/admin') Cancel
+      
+  script.
+    var map;
+    function initMap(){
+      map = new google.maps.Map(document.getElementById('map'), {
+      center: !{JSON.stringify(neighborhood.epicenter)},
+      zoom: 13
+      });
+    }
+  script(async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGvRKGXRbAW1TT-Ls0Rw6YX1jEHkyvwg0&callback=initMap")

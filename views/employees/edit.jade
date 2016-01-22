@@ -5,7 +5,7 @@ block content
     h1= employee ? employee.first_name + ' ' + employee.last_name + ' Information' : "Enter Employee Information"
 
   form.form(method='post' action=employee ? '/admin/restaurants/' + restaurant.id + '/employees/' + employee.id + '/edit' : '/admin/restaurants/' + restaurant.id + '/employees')
-    h3 Edit Employee for #{restaurant.name}
+    h3= employee ? 'Edit Employee for ' + restaurant.name  : 'Create Employee for ' + restaurant.name
     label First Name
     input(name='first' value= employee ? employee.first_name : "")
     label Last Name
@@ -23,6 +23,6 @@ block content
       each position in positions
         option(value=position select= employee && employee.position === position ? selected : false)= position
     div.buttons
-      button(type='submit') Update
+      button.green(type='submit') Update
       a(href='/admin/restaurants/' + restaurant.id)
-        button(type='button') Cancel
+        button.red(type='button') Cancel

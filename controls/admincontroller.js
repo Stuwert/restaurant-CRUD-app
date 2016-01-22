@@ -100,10 +100,10 @@ var commands = {
   },
   updateEmployee: function(req, res){
     Employees().where('id', req.params.eid).update({
-      first_name: req.body.first_name,
-      last: req.body.first_name,
+      first_name: req.body.last,
+      last_name: req.body.last,
       position: req.body.position,
-      performance: req.params.performance
+      performance: req.body.performance
     }).then(function(result){
       res.redirect('/admin')
     })

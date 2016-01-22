@@ -41,8 +41,28 @@ module.exports = {
      }
    })
   },
-  createEditNeighborhood: function(req, res){
+  createNeighborhood: function(req, res){
     res.render('neighborhood/create', {states: states})
+  },
+  editNeighborhood: function(req, res){
+    Neighborhoods().where('id', req.params.id).first().then(function(neighborhood){
+      res.render('neighborhood/edit', {neighborhood: neighborhood, states: states})
+    })
+  },
+  updateNeighborhood: function(req, res){
+    var epicenter = req.body.epicenter;
+    for(area in epicenter){
+      epicenter[area] = +epicenter[area]
+    }
+    console.log(epicenter);
+    Neighborhoods().where('id', req.params.id).update({
+      epicenter: epicenter,
+      name: req.body.name,
+      city: req.body.city,
+      state: req.body.state
+    }).then(function(){
+      res.redirect('/admin')
+    })
   }
 
 }

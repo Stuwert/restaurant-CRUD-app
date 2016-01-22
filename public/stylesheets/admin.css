@@ -25,7 +25,7 @@ h2{
 .square{
   height: 110px;
   width: 110px;
-  flex-shrink: 1;
+  min-width: 110px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -108,4 +108,21 @@ h2{
 .restaurantView .restaurantemployees .buttons{
   width: 50%;
   height: 40px;
+}
+
+.restaurantView .table{
+  width: 75%;
+  min-width: 500px;
+}
+
+.restaurantView .tablebody{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.restaurantView .table .buttons > *{
+  width: 45%;
+  margin-left: 5%;
 }

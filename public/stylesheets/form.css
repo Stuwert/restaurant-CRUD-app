@@ -9,6 +9,7 @@
   justify-content: space-around;
   position: relative;
   padding: 20px 5px;
+  min-width: 500px;
 }
 
 .form > *{
@@ -37,6 +38,7 @@
 }
 
 .form .buttons a{
+  width: 50%;
   font-size: 18px;
 }
 
@@ -45,9 +47,13 @@ div.buttons {
   flex-wrap: wrap;
 }
 
-div.buttons a{
+div.buttons > *{
   flex-grow: 2;
   width: 50%;
+}
+
+div.buttons a{
+  flex-grow: 2;
   margin: 0;
 }
 
@@ -75,4 +81,8 @@ button.darkergreen{
 
 button.lightergreen{
   background-color: #61e788;
+}
+
+.hidden{
+  display: none;
 }

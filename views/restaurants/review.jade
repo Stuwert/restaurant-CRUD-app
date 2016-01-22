@@ -5,7 +5,7 @@ block navbar
   
 block body
   
-  form.form(method='post' action= review && review.id ? '/restaurant/' + restaurant.id  + '/review/' + review.id : '/restaurant/' + restaurant.id  + '/review')
+  form.form(method='post' action= review && review.id ? '/restaurants/' + restaurant.id  + '/reviews/' + review.id : '/restaurants/' + restaurant.id  + '/reviews')
     if review
       h3 Update your #{restaurant.name} review
     else

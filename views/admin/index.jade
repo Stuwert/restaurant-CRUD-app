@@ -9,7 +9,7 @@ block body
       each neighborhood in neighborhoods
         div.square
           h3
-            a(href='/admin/neighborhoods/' + neighborhood.id)= neighborhood.name
+            a(href='/admin/neighborhoods/' + neighborhood.id + '/edit')= neighborhood.name
           p= neighborhood.county
           p #{neighborhood.city}, #{neighborhood.state}
       div.square 
