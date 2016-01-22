@@ -5,7 +5,7 @@ block content
     h1= employee ? employee.first_name + ' ' + employee.last_name : "Enter Your New Hire Information"
 
 
-  form.ferm(method='post' action= employee ? '/admin/employee/' + employee.id + '/edit' : '/admin/restaurant/' + restaurant.id + '/employee')
+  form.form(method='post' action= employee ? '/admin/employee/' + employee.id + '/edit' : '/admin/restaurant/' + restaurant.id + '/employee')
     label First Name
     input(name='first' value= employee ? employee.first_name : "")
     label Last Name

@@ -1,7 +1,7 @@
 extends ../admin
 
 block body
-  form.ferm(method='post' action= restaurant ? '/admin/restaurant/' + restaurant.id + '/edit' : '/admin/restaurant')
+  form.form(method='post' action= restaurant ? '/admin/restaurant/' + restaurant.id + '/edit' : '/admin/restaurant')
     h3.labelform= restaurant ? 'Update Restaurant' : 'New Restaurant'
     label Name 
     input(type="text" name="name" placeholder='Restaurant Name' value=restaurant ? restaurant.name : "") 

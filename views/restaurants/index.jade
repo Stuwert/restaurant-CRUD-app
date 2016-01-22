@@ -8,7 +8,7 @@ block body
     each val in restaurants
       div.food
         h2
-          a(href='/restaurant/' + val.id )= val.name
+          a(href='/restaurants/' + val.id )= val.name
         img(src= val.img, height='125' width='125')
         p= val.cuisine
         p= val.city + ', ' + val.state

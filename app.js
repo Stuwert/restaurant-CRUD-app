@@ -15,8 +15,8 @@ var adminemployees = require('./routes/admin/employees')
 
 //user routes
 var users = require('./routes/users/index')
-var userneighborhoods = require('./routes/users/restaurants')
-var userrestaurants = require('./routes/users/neighborhoods')
+var userneighborhoods = require('./routes/users/neighborhoods')
+var userrestaurants = require('./routes/users/restaurants')
 
 
 var app = express();

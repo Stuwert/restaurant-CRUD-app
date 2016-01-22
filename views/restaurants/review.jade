@@ -5,7 +5,7 @@ block navbar
   
 block body
   
-  form.ferm(method='post' action= review && review.id ? '/restaurant/' + restaurant.id  + '/review/' + review.id : '/restaurant/' + restaurant.id  + '/review')
+  form.form(method='post' action= review && review.id ? '/restaurant/' + restaurant.id  + '/review/' + review.id : '/restaurant/' + restaurant.id  + '/review')
     if review
       h3 Update your #{restaurant.name} review
     else
@@ -31,7 +31,7 @@ block body
       button.green Submit
       a.red(href='/restaurant/' + restaurant.id) Cancel
   if review && review.rating !== null && review.reviewer_name !== '' && review.review !== ''
-    form.ferm(method='post' action='/restaurant/' + restaurant.id + '/review/' + review.id + '/delete')
+    form.form(method='post' action='/restaurants/' + restaurant.id + '/review/' + review.id + '/delete')
       input(type='text' placeholder='Type the name of the restaurant to delete')
       div.buttons
         button.red.delete Delete
