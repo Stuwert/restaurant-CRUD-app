@@ -5,6 +5,13 @@ block navbar
 block body
   main.admin
     div.top
+      h2 Neighborhoods
+      each neighborhood in neighborhoods
+        div.square
+          h3
+            a(href='/admin/neighborhoods/' + neighborhood.id)= neighborhood.name
+          p= neighborhood.county
+          p #{neighborhood.city}, #{neighborhood.state}
     div.left
       h2 Restaurants
       each restaurant in restaurants

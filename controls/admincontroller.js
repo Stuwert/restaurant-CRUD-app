@@ -10,7 +10,9 @@ var commands = {
   readAll: function(req, res){
     Restaurants().select().table('locations').then(function(result){
       Employees().select().table('employees').then(function(resultz){
-        res.render('admin/index', {restaurants: result, employees: resultz})
+        Neighborhoods().select().then(function(ney){
+          res.render('admin/index', {restaurants: result, employees: resultz, neighborhoods: ney})
+        })
       })
     })
   },
