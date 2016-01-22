@@ -3,6 +3,7 @@ var express = require('express');
 var states = require('../db/states')
 var cuisine = require('../db/cuisine')
 var positions = require('../db/positions')
+var request = require('request')
 
 var commands = {
 
@@ -25,34 +26,50 @@ var commands = {
 
   createUpdateRestaurant: function(req, res){
     Restaurants().where('id', req.params.id).first().then(function(result){
-      res.render('admin/newrestaurant', {restaurant: result, states: states, cuisine: cuisine})
+      Neighborhoods().select().then(function(neighborhoods){
+        res.render('admin/newrestaurant', {restaurant: result, states: states, cuisine: cuisine, neighborhoods: neighborhoods})
+      })
     })
   },
+
   createNewRestaurant: function(req, res){
-    Restaurants().insert({
-      name: req.body.name,
-      city: req.body.city,
-      state: req.body.state,
-      description: req.body.description,
-      img: req.body.img,
-      rating: 0,
-      location: null,
-    }, 'id').then(function(result){
-      console.log(result)
-      res.redirect('/admin/')
+    var google = 'https://maps.googleapis.com/maps/api/geocode/json?address='
+    var location = req.body.address + ',' + req.body.city + ',' + req.body.state;
+    request(google + location + '&key=' + process.env.GOOGLE_API, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        Restaurants().insert({
+          name: req.body.name,
+          city: req.body.city,
+          state: req.body.state,
+          street1: req.body.address,
+          epicenter: jase.results[0].geometry.location,
+          description: req.body.description,
+          img: req.body.img,
+          neighborhood_id: req.body.neighborhood_id
+        }, 'id').then(function(result){
+          console.log(result)
+          res.redirect('/admin')
+        })
+      }
     })
   },
   updateRestaurant: function(req, res){
-    Restaurants().where('id', req.params.id).update({
-      name: req.body.name,
-      city: req.body.city,
-      state: req.body.state,
-      description: req.body.description,
-      img: req.body.img,
-      rating: 0,
-      location: null,
-    }).then(function(result){
-      res.redirect('/admin')
+    var google = 'https://maps.googleapis.com/maps/api/geocode/json?address='
+    var location = req.body.address + ',' + req.body.city + ',' + req.body.state;
+    request(google + location + '&key=' + process.env.GOOGLE_API, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        Restaurants().where('id', req.params.id).update({
+          name: req.body.name,
+          city: req.body.city,
+          state: req.body.state,
+          description: req.body.description,
+          img: req.body.img,
+          street1: req.body.address,
+          neighborhood_id: req.body.neighborhood_id
+        }).then(function(result){
+          res.redirect('/admin')
+        })
+      }
     })
   },
   deleteRestaurant: function(req, res){
@@ -105,4 +122,8 @@ function Employees(){
 
 function Restaurants(){
   return knex('locations');
+}
+
+function Neighborhoods() {
+  return knex('neighborhoods')
 }

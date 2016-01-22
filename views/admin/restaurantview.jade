@@ -1,4 +1,4 @@
-extend ../layout
+extend ../adminlayout
 
 block content
 
@@ -7,25 +7,19 @@ block content
     div
       a(href='/admin') Return to Admin
 
-  main.admin
+  main.restaurantView
     img(src=restaurant.img, height='350px' width='350px')
     div.detail
       div
         h2= restaurant.cuisine + " cuisine" 
         h2= "Located in " + restaurant.city + ", " + restaurant.state
       p= restaurant.description
-      div.rating
-        p Rating:
-        div.stars
-          - var i = 1;
-          while i <= restaurant.rating
-            img(src='/images/star.png' height='30' width='30' id= i++)
-      form.buttons(action='/admin/restaurant/'+ restaurant.id + '/delete', method='post')  
+      form.buttons(action='/admin/restaurants/'+ restaurant.id + '/delete', method='post')  
         button.green(type='button')
-          a(href='/admin/restaurant/' + restaurant.id + '/edit') Edit Restaurant
+          a(href='/admin/restaurants/' + restaurant.id + '/edit') Edit Restaurant
         button.red(type='submit' name='button' value='delete') Delete
         button.newhire(type='button')
-          a(href='/admin/restaurant/' + restaurant.id + '/employee/new') New Hire
+          a(href='/admin/restaurants/' + restaurant.id + '/employee/new') New Hire
   if employees
     div.restaurantemployees
       each employee in employees
@@ -40,6 +34,6 @@ block content
               while i <= employee.performance
                 img(src='/images/star.png' width='20' height='20' class=i++)
             div.buttons
-              form(action='/admin/restaurant/' + restaurant.id + '/employee/' + employee.id + '/delete' method='post')
-                a(href='/admin/restaurant/' + restaurant.id + '/employee/' + employee.id + '/edit') Update
+              form(action='/admin/restaurants/' + restaurant.id + '/employee/' + employee.id + '/delete' method='post')
+                a(href='/admin/restaurants/' + restaurant.id + '/employee/' + employee.id + '/edit') Update
                 button Remove From Employment

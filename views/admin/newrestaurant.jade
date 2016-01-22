@@ -1,10 +1,12 @@
 extends ../admin
 
 block body
-  form.form(method='post' action= restaurant ? '/admin/restaurant/' + restaurant.id + '/edit' : '/admin/restaurant')
+  form.form(method='post' action= restaurant ? '/admin/restaurants/' + restaurant.id + '/edit' : '/admin/restaurants')
     h3.labelform= restaurant ? 'Update Restaurant' : 'New Restaurant'
     label Name 
     input(type="text" name="name" placeholder='Restaurant Name' value=restaurant ? restaurant.name : "") 
+    label Street Address
+    input(type='text' name='address' placeholder='Address' value=restaurant ? restaurant.street1 : "")
     label Location
     input(type='text' name='city' placeholder='City' value= restaurant ? restaurant.city : "")
     select(name='state')
@@ -13,6 +15,13 @@ block body
             option(value= val selected='selected')= val
           else
             option(value= val)= val
+    label Neighborhood
+    select(name='neighborhood_id')
+      each val, index in neighborhoods
+        if restaurant.neighborhood_id == val.id
+          option(value= val.id selected)= val.name
+        else
+          option(value= val.id)= val.name
     label Cuisine  
     select(name='cuisine')
       for val, index in cuisine
@@ -27,4 +36,4 @@ block body
       button.green(type='submit') 
         a= restaurant ? 'Update' : 'Create'
       button.red 
-        a(href= restaurant ? '/admin/restaurant/' + restaurant.id : "/admin") Cancel
+        a(href= restaurant ? '/admin/restaurants/' + restaurant.id : "/admin") Cancel

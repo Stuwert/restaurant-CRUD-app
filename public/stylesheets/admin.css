@@ -1,0 +1,44 @@
+header{
+  background-color: #381c2f;
+}
+
+header h1{
+  color: white;
+}
+
+.admin .top{
+  width: 100%;
+  height: 150px;
+}
+
+.admin .left, .admin .right {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.restaurant .tableheader{
+  background-color: #81406a;
+}
+
+.restaurant .tableheader a{
+  color: white;
+}
+
+.employee .tableheader{
+  background-color: #ee76c4;
+}
+
+.admin .table{
+  width: 95%;
+  max-width: 400px;
+  margin: 10px;
+  border-radius: 0;
+}
+
+.admin .tablebody{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
