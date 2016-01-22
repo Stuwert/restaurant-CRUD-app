@@ -1,8 +1,5 @@
-var express = require('express');
-var knex = require('../db/knex');
-var controller = require('../controls/admincontroller')
-var states = require('../db/states')
-var cuisine = require('../db/cuisine')
+var express = require('express')
+var controller = require('../../controls/admincontroller')
 var router = express.Router();
 
 

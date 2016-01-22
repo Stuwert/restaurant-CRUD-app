@@ -1,5 +1,5 @@
 var express = require('express')
-var neighborhood = require('../controls/neighborhoodscontroller')
+var neighborhood = require('../../controls/neighborhoodscontroller')
 var router = express.Router();
 
 router.get('/', neighborhood.readAllNeighborhoods);

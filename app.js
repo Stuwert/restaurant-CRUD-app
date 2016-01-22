@@ -6,11 +6,17 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var dotenv = require('dotenv').load();
 
-var routes = require('./routes/index')
-var restaurants = require('./routes/restaurants');
-var admin = require('./routes/admin')
-var employees = require('./routes/employees')
-var neighborhoods = require('./routes/neighborhoods')
+
+//admin routes
+var admin = require('./routes/admin/index')
+var adminrestaurants = require('./routes/admin/restaurants');
+var adminneighborhoods = require('./routes/admin/neighborhoods')
+var adminemployees = require('./routes/admin/employees')
+
+//user routes
+var users = require('./routes/users/index')
+var userneighborhoods = require('./routes/users/restaurants')
+var userrestaurants = require('./routes/users/neighborhoods')
 
 
 var app = express();
@@ -26,12 +32,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', routes);
-app.use('/restaurants', restaurants);
+//admin side
+app.use('/', users);
+app.use('/admin/restaurants', adminrestaurants);
+app.use('/admin/restaurants', adminemployees);
+//user side
+app.use('/restaurants', userrestaurants);
 app.use('/admin', admin);
-app.use('/admin/restaurant', employees);
-app.use('/neighborhoods', neighborhoods);
+app.use('/neighborhoods', userneighborhoods);
 
 
 // catch 404 and forward to error handler

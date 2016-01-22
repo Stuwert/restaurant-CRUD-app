@@ -1,9 +1,5 @@
 var express = require('express');
-var knex = require('../db/knex');
-var controller = require('../controls/restaurantcontroller')
-var states = require('../db/states')
-var cuisine = require('../db/cuisine')
-var neighborhood = require('../controls/neighborhoodscontroller')
+var controller = require('../../controls/restaurantcontroller')
 var router = express.Router();
 var holderobj;
 
