@@ -4,12 +4,12 @@ block navbar
 
 block body
   each neighborhood, i in neighborhoods
-    div
+    div.neighborhood.floatBox
       h3
         a(href='/neighborhoods/' +neighborhood.id )= neighborhood.name
-      p= neighborhood.county
+      h4= neighborhood.county
       p #{neighborhood.city}, #{neighborhood.state}
-      div(id='map_canvas' + i, style='height:300px; width: 300px; border: 1px solid #888')
+      div(id='map_canvas' + i)
 
   script.
     var map = {};

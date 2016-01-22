@@ -1,0 +1,226 @@
+header{
+  width: 100%;
+  font-size: 40px;
+  background-color: #56cd77;
+  padding: 5px 0;
+  position: relative;
+}
+
+
+@media(max-width: 550px){
+  header{
+    height: 60px;
+  }
+}
+
+header div{
+  position: absolute;
+  bottom: 3px;
+  right: 10px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+header div a{
+  color: #fff2f1;
+  font-size: 20px;
+}
+
+/*Standard font sizes*/
+
+h1{
+  font-size: 40px;
+  font-weight: lighter;
+  color: #3d3937;
+  text-align: center;
+}
+
+h3{
+  font-size: 30px;
+}
+
+h4{
+  font-size: 20px;
+}
+
+
+main{
+  width: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+/*"Start Page" Header and buttons*/
+
+main.header p{
+  width: 55%;
+  font-size: 35px;
+  line-height: 1.5;
+  text-align: center;
+  margin-top: 30px;
+}
+
+main.header .buttons{
+  margin-top: 30px;
+  width: 55%;
+  height: 75px;
+}
+
+main.header button{
+  margin: 0 20px;
+}
+
+/*Defining a floatbox type of element*/
+
+.floatBox{
+  background-color: #e1e1e1;
+  color: #6e6b6c;
+  border: 3px solid #0d0d0d;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+/*Defining a table type of element*/
+
+.table{
+  border-width: 2px;
+  border-style:  solid;
+  border-radius: 5px;
+  height: 80px;
+  margin: 40px 0;
+}
+
+.tableheader{
+  display: flex;
+  justify-content: space-between;
+  height: 25%;
+}
+
+.tableheader *{
+  font-size: 20px;
+}
+
+.tablebody{
+  height: 75%;
+  display: flex;
+  position: relative;
+}
+
+a.tablemore{
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  font-size: 18px;
+  color: #a1a1a1;
+}
+
+/*View All Restaurants*/
+
+.food{
+  width: 225px;
+  height: 225px;
+}
+
+.food h2, .food p, .food a{
+  font-weight: lighter;
+  color: #6e6b6c;
+}
+
+.food a{
+  font-size: 24px;
+}
+
+.food p{
+  font-size: 14px;
+  font-weight: bolder;
+}
+
+.food div{
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+/*View a single restaurant and related reviews*/
+
+
+
+.restaurantView .detail {
+  width: 50%;
+  min-width: 300px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.restaurantView .detail p{
+  font-size: 20px;
+  font-weight: lighter;
+  margin: 10px;
+}
+
+.restaurantView .detail .buttons{
+  width: 66%;
+  margin-left: 17%;
+}
+.detail p{
+  line-height: 1.5;
+}
+
+/*Restaurant Reviews*/
+
+.restaurantView .reviews{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rating{
+  display: flex;
+  align-items: center;
+}
+
+.individualreview{
+  width: 50%;
+  background-color: #FFFFFF;
+  border-color: #89dd9d;
+  color: #a1a1a1;
+}
+
+.individualreview .tableheader{
+  background-color: #e0f8e1;
+}
+
+.individualreview .rating{
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+}
+
+
+/*View All Neighborhoods page*/
+
+.neighborhood{
+ width: 325px;
+ height: 400px;
+ align-items: center;
+}
+
+[id^='map_canvas'] {
+  width: 300px;
+  height: 300px;
+  border: 1px solid black;
+}
+
+
+/*View a single neighborhood page*/

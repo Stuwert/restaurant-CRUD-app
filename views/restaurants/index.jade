@@ -4,9 +4,9 @@ block navbar
 
 
 block body
-  div.users
+  main.allRestaurants
     each val in restaurants
-      div.food
+      div.food.floatBox
         h2
           a(href='/restaurants/' + val.id )= val.name
         img(src= val.img, height='125' width='125')

@@ -39,3 +39,40 @@
 .form .buttons a{
   font-size: 18px;
 }
+
+div.buttons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+div.buttons a{
+  flex-grow: 2;
+  width: 50%;
+  margin: 0;
+}
+
+button{
+  border-radius: 6px;
+  border: none;
+  box-shadow: none;
+  font-size: 20px;
+  font-weight: lighter;
+  flex-grow: 2;
+}
+
+button.green{
+  color: #3d3937;
+  background-color: #56cd77;
+}
+
+button.red{
+  background-color: #ff5b39;
+}
+
+button.darkergreen{
+  background-color: #3e9558;
+}
+
+button.lightergreen{
+  background-color: #61e788;
+}

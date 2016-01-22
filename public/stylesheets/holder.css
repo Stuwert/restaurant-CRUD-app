@@ -1,0 +1,142 @@
+body {
+  font: 14px "Helvetica", Arial, sans-serif;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+.buttons button, .buttons a{
+  width: 45%;
+  height: 100%;
+  border-radius: 5px;
+  box-shadow: none;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  padding: 4px 0;
+  color: inherit;
+  font-size: 16px;
+}
+
+.green{
+  background-color: #56cd77;
+}
+
+.admin .food{
+  width: 94%;
+  margin-left: 3%;
+}
+
+.buttons .delete{
+  width: 100%;
+}
+
+.admin{
+  background-color: #ff5b39;
+}
+
+main.admin{
+  background-color: transparent;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+  height: auto;
+}
+
+.admin h2{
+  text-align: center;
+  font-size: 25px;
+}
+
+.admin > div{
+  width: 48%;
+}
+
+.left > div, .right > div{
+  width: 100%;
+  border: 1px solid black;
+  position: relative;
+  margin: 20px 0;
+}
+
+.header{
+  width: 100%;
+  height: 30px;
+  font-size: 20px;
+  background-color: #ff9f83;
+  padding: 2px;
+}
+
+.rest {
+  display: flex;
+  justify-content: space-around;
+}
+
+.employee .header{
+  background-color: #ffda56;
+}
+
+.employee .rest{
+  padding: 10px 0;
+}
+
+.admin a, .employee a{
+  color: black;
+}
+
+.restaurantemployees{
+  width: 100%;
+  position: absolute;
+  top: 500px;
+}
+
+.restaurantemployees  .employee{
+  width: 90%;
+  margin: 2% 5%;
+  height: 150px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.admin .buttons{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.admin .buttons button{
+  width: 45%;
+  margin: 10px 0;
+  height: 30px;
+}
+
+.admin button a{
+  margin: 0;
+}
+
+.admin .green{
+  background-color: transparent;
+}
+
+.detail button.newhire{
+  background-color: #ffcf31;
+}
+
+.admin .red{
+  background-color: grey;
+}
+
+.employee .buttons *{
+ font-size: 14px;
+  width: auto;
+  height: auto;
+  margin-left: 30px;
+}
+
+.top{
+  width: 100%;
+  height: 200px;
+  background-color: 200px;
+}
