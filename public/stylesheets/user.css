@@ -224,3 +224,53 @@ a.tablemore{
 
 
 /*View a single neighborhood page*/
+
+.neighborhoodView{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#map{
+  width: 400px;
+  height: 400px;
+  border: 1px solid black;
+  margin-top: 40px;
+}
+
+.neighborhoodRestaurants{
+  width: 400px;
+  height: auto;
+}
+
+.neighborhoodView .table{
+  height: 180px;
+}
+
+.neighborhoodView .tableheader{
+  background-color: #56cd77;
+  display: flex;
+  align-items: center;
+}
+
+.neighborhoodView .tableheader a{
+  color: white;
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+.neighborhoodView .tablebody{
+  display: flex;
+  justify-content: space-between;
+}
+
+.neighborhoodRestaurantContent{
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  text-align: left;
+}
+
+.neighborhoodRestaurantContent p{
+  font-size: 18px;
+}

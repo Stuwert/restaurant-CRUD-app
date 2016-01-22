@@ -7,20 +7,19 @@ block content
       a(href='/neighborhoods') Return to Neighborhoods
 
   main.neighborhoodView
-    div#map(style='height:300px; width: 300px; border: 1px solid #888')
-    div 
-      h2 Restaurants
+    div#map
+    div.neighborhoodRestaurants 
       if restaurants
         each val in restaurants
           div.table
             div.tableheader
-              h2
-                a(href='/restaurants/' + val.id )= val.name
+              a(href='/restaurants/' + val.id )= val.name
             div.tablebody
               img(src= val.img, height='125' width='125')
-              p= val.cuisine
-              p= val.city + ', ' + val.state
-
+              div.neighborhoodRestaurantContent
+                p Cuisine:  #{val.cuisine}
+                p Location: #{val.city}, #{val.state}
+                p= val.description
 
   script.
     var map;
