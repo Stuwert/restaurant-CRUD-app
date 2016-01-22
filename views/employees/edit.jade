@@ -1,16 +1,16 @@
-extend ../layout
+extend ../adminlayout
 
 block content
   header.admin
-    h1= employee ? employee.first_name + ' ' + employee.last_name : "Enter Your New Hire Information"
+    h1= employee ? employee.first_name + ' ' + employee.last_name + ' Information' : "Enter Employee Information"
 
-
-  form.form(method='post' action= employee ? '/admin/employee/' + employee.id + '/edit' : '/admin/restaurant/' + restaurant.id + '/employee')
+  form.form(method='post' action=employee ? '/admin/restaurants/' + restaurant.id + '/employees/' + employee.id + '/edit' : '/admin/restaurants/' + restaurant.id + '/employees')
+    h3 Edit Employee for #{restaurant.name}
     label First Name
     input(name='first' value= employee ? employee.first_name : "")
     label Last Name
     input(name='last' value= employee ? employee.last_name : "")
-    label Position
+    label Performance
     div.ratings
       - var n = 1
       while n<=5
@@ -18,8 +18,11 @@ block content
             input(name='performance' type='radio' checked='checked' value= n++)
           else
             input(name='performance' type='radio' value= n++)
+    label Position
     select(name='position')
       each position in positions
         option(value=position select= employee && employee.position === position ? selected : false)= position
     div.buttons
       button(type='submit') Update
+      a(href='/admin/restaurants/' + restaurant.id)
+        button(type='button') Cancel

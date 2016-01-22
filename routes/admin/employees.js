@@ -4,18 +4,18 @@ var router = express.Router();
 
 
 //View Form to Create employee
-router.get('/:id/employee/new', controller.createUpdateEmployee)
+router.get('/:id/employees/new', controller.createUpdateEmployee)
 
 //View Form to Update employee
-router.get('/:id/employee/:eid/edit', controller.createUpdateEmployee)
+router.get('/:id/employees/:eid/edit', controller.createUpdateEmployee)
 
 //Delete employee post request
-router.post('/:id/employee/:eid/delete', controller.deleteEmployee);
+router.post('/:id/employees/:eid/delete', controller.deleteEmployee);
 
 //Post request to create Employees
-router.post('/:id/employee', controller.createEmployee);
+router.post('/:id/employees', controller.createEmployee);
 
 //Post request to update Employees
-router.post('/:id/employee/:eid/edit', controller.updateEmployee)
+router.post('/:id/employees/:eid/edit', controller.updateEmployee)
 
 module.exports = router;

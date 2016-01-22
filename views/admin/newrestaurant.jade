@@ -18,7 +18,7 @@ block body
     label Neighborhood
     select(name='neighborhood_id')
       each val, index in neighborhoods
-        if restaurant.neighborhood_id == val.id
+        if restaurant && restaurant.neighborhood_id == val.id
           option(value= val.id selected)= val.name
         else
           option(value= val.id)= val.name

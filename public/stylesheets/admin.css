@@ -6,23 +6,40 @@ header h1{
   color: white;
 }
 
+h2{
+  font-size: 30px;
+}
+
 .admin .top{
-  width: 100%;
   height: 150px;
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  flex-direction: row;
+  overflow-y: scroll;
 }
 
 .top h2{
-  align-self: flex-start;
+  align-self: center;
+  margin: 0 20px;
 }
 
 .square{
-  height: 125px;
-  width: 125px;
+  height: 110px;
+  width: 110px;
+  flex-shrink: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  margin: 0 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: #726270;
 }
+
+.square h3 a{
+  color: white;
+}
+
 
 .admin .left, .admin .right {
   width: 50%;
@@ -54,4 +71,41 @@ header h1{
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+/*The restaurant view*/
+
+.restaurantView .view{
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 200px;
+}
+
+.restaurantView .detail{
+  width: 50%;
+  text-align: center;
+  display: flex;
+  flex-direction: center;
+  align-items: center;
+  justify-content: center;
+  min-width: 200px;
+}
+
+.restaurantView .detail .buttons{
+  margin: 0;
+}
+
+.restaurantView .restaurantemployees {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.restaurantView .restaurantemployees .buttons{
+  width: 50%;
+  height: 40px;
 }

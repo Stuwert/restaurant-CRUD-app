@@ -81,7 +81,9 @@ var commands = {
   },
   createUpdateEmployee: function(req, res){
     Employees().where('id', req.params.eid).first().then(function(result){
-      res.render('admin/editemployee', {positions: positions, employee: result, restaurant: {id: req.params.id}})
+      Restaurants().where('id', req.params.id).first().then(function(restaurant){
+        res.render('employees/edit', {positions: positions, employee: result, restaurant: {id: req.params.id, name: restaurant.name}})
+      })
     })
   },
   createEmployee: function(req, res){

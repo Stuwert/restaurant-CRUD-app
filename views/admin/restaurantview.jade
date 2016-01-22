@@ -8,32 +8,32 @@ block content
       a(href='/admin') Return to Admin
 
   main.restaurantView
-    img(src=restaurant.img, height='350px' width='350px')
+    div.view
+      img(src=restaurant.img, height='150px' width='150px')
     div.detail
-      div
-        h2= restaurant.cuisine + " cuisine" 
-        h2= "Located in " + restaurant.city + ", " + restaurant.state
+      h2= restaurant.city + ", " + restaurant.state
       p= restaurant.description
       form.buttons(action='/admin/restaurants/'+ restaurant.id + '/delete', method='post')  
         button.green(type='button')
           a(href='/admin/restaurants/' + restaurant.id + '/edit') Edit Restaurant
         button.red(type='submit' name='button' value='delete') Delete
-        button.newhire(type='button')
-          a(href='/admin/restaurants/' + restaurant.id + '/employee/new') New Hire
-  if employees
     div.restaurantemployees
-      each employee in employees
-        div.employee
-          div.header
-            h3= employee.first_name + ' ' + employee.last_name
-          div.rest
-            div.position
-              p= employee.position
-            div.performance
-              - var i=1
-              while i <= employee.performance
-                img(src='/images/star.png' width='20' height='20' class=i++)
-            div.buttons
-              form(action='/admin/restaurants/' + restaurant.id + '/employee/' + employee.id + '/delete' method='post')
-                a(href='/admin/restaurants/' + restaurant.id + '/employee/' + employee.id + '/edit') Update
-                button Remove From Employment
+      div.buttons
+        button.newhire(type='button')
+          a(href='/admin/restaurants/' + restaurant.id + '/employees/new') New Hire
+      if employees
+        each employee in employees
+          div.employee.table
+            div.tableheader
+              h3= employee.first_name + ' ' + employee.last_name
+            div.tablebody
+              div.position
+                p= employee.position
+              div.performance
+                - var i=1
+                while i <= employee.performance
+                  img(src='/images/star.png' width='20' height='20' class=i++)
+              div.buttons
+                form(action='/admin/restaurants/' + restaurant.id + '/employees/' + employee.id + '/delete' method='post')
+                  a(href='/admin/restaurants/' + restaurant.id + '/employees/' + employee.id + '/edit') Update
+                  button Remove From Employment
