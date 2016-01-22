@@ -23,14 +23,19 @@ block content
 
   script.
     var map;
-    var epicenter = {
-      lat: #{epicenter.lat},
-      lng: #{epicenter.lng}
-    }
+    var markers = {};
+    var restaurants = !{JSON.stringify(restaurants)}
     function initMap(){
       map = new google.maps.Map(document.getElementById('map'), {
-      center: epicenter,
-      zoom: 10
+      center: !{JSON.stringify(epicenter)},
+      zoom: 13
       });
+      restaurants.forEach(function(item, i){
+        markers['marker' + i] = new google.maps.Marker({
+          position: item.epicenter,
+          map: map,
+          title: item.name
+        })
+      })
     }
   script(async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGvRKGXRbAW1TT-Ls0Rw6YX1jEHkyvwg0&callback=initMap")
