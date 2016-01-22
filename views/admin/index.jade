@@ -12,6 +12,9 @@ block body
             a(href='/admin/neighborhoods/' + neighborhood.id)= neighborhood.name
           p= neighborhood.county
           p #{neighborhood.city}, #{neighborhood.state}
+      div.square 
+        h3 
+          a(href='/admin/neighborhoods/new') New 'Hood
     div.left
       h2 Restaurants
       each restaurant in restaurants

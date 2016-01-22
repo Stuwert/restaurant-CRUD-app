@@ -42,7 +42,7 @@ module.exports = {
    })
   },
   createEditNeighborhood: function(req, res){
-    res.render('admin/createneighborhood', {states: states})
+    res.render('neighborhood/create', {states: states})
   }
 
 }
