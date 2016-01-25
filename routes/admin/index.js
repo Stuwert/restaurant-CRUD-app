@@ -4,6 +4,7 @@ var router = express.Router();
 
 
 router.use(function(req, res, next){
+  console.log(req.cookies.userId);
   if(req.cookies.userId === 'admin'){
     next();
   }else{

@@ -6,4 +6,9 @@ router.get('/', function(req, res, next){
   res.render('login/index')
 })
 
+router.post('/', function(req, res, next){
+  res.cookie('userId', req.body.userId)
+  res.redirect('/')
+})
+
 module.exports = router;
