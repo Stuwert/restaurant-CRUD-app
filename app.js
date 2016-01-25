@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 var dotenv = require('dotenv').load();
 
 
+
+
 //admin routes
 var admin = require('./routes/admin/index')
 var adminrestaurants = require('./routes/admin/restaurants');
@@ -34,6 +36,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+app.use('/admin', function(req, res, next){
+  console.log(req.cookies.userId);
+  if(req.cookies.userId === 'admin'){
+    next();
+  }else{
+    res.redirect('/login')
+  }
+})
 //admin side
 app.use('/', users);
 app.use('/admin/restaurants', adminrestaurants);
