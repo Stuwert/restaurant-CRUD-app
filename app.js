@@ -18,6 +18,8 @@ var users = require('./routes/users/index')
 var userneighborhoods = require('./routes/users/neighborhoods')
 var userrestaurants = require('./routes/users/restaurants')
 
+//login routes
+var login = require('./routes/login')
 
 var app = express();
 
@@ -41,7 +43,8 @@ app.use('/admin/neighborhoods', adminneighborhoods);
 app.use('/restaurants', userrestaurants);
 app.use('/admin', admin);
 app.use('/neighborhoods', userneighborhoods);
-
+//logins
+app.use('/login', login);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
