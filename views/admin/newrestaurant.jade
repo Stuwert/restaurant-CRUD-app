@@ -1,14 +1,20 @@
 extends ../admin
 
 block body
-  form.form(method='post' action= restaurant ? '/admin/restaurants/' + restaurant.id + '/edit' : '/admin/restaurants')
-    h3.labelform= restaurant ? 'Update Restaurant' : 'New Restaurant'
+  form.form(method='post' action= restaurant && restaurant.id ? '/admin/restaurants/' + restaurant.id + '/edit' : '/admin/restaurants')
+    h3.labelform= restaurant && restaurant.name ? 'Update Restaurant' : 'New Restaurant'
     label Name 
-    input(type="text" name="name" placeholder='Restaurant Name' value=restaurant ? restaurant.name : "") 
+    if restaurant && restaurant.name === ''
+      p.formfill Please enter a Name
+    input(type="text" name="name" placeholder='Restaurant Name' value=restaurant && restaurant.name ? restaurant.name : "") 
     label Street Address
-    input(type='text' name='address' placeholder='Address' value=restaurant ? restaurant.street1 : "")
+    if restaurant && restaurant.street1 === ''
+      p.formfill Please enter an Address
+    input(type='text' name='address' placeholder='Address' value=restaurant && restaurant.street1 ? restaurant.street1 : "")
     label Location
-    input(type='text' name='city' placeholder='City' value= restaurant ? restaurant.city : "")
+    if restaurant && restaurant.city === ''
+      p.formfill Please enter a City
+    input(type='text' name='city' placeholder='City' value= restaurant && restaurant.city ? restaurant.city : "")
     select(name='state')
       for val, index in states
         if restaurant && index == states.indexOf(restaurant.state)
@@ -30,10 +36,15 @@ block body
           else
             option(value= val)= val
     label Image
-    input(type='text' name='img' value= restaurant ? restaurant.img : "" placeholder='Image URL')
-    textarea(cols='40', rows='8', name='description' placeholder='Short bio')= restaurant ? restaurant.description : ""
+    if restaurant && restaurant.img === ''
+      p.formfill Please give your restaurant an image
+    input(type='text' name='img' value= restaurant && restaurant.img ? restaurant.img : "" placeholder='Image URL')
+    label Description
+    if restaurant && restaurant.description === ''
+      p.formfill Please give your restaurant a description
+    textarea(cols='40', rows='8', name='description' placeholder='Short bio')= restaurant && restaurant.description ? restaurant.description : ""
     div.buttons
       button.green(type='submit') 
-        a= restaurant ? 'Update' : 'Create'
+        a= restaurant && restaurant.name ? 'Update' : 'Create'
       button.red 
-        a(href= restaurant ? '/admin/restaurants/' + restaurant.id : "/admin") Cancel
+        a(href= restaurant && restaurant. name ? '/admin/restaurants/' + restaurant.id : "/admin") Cancel

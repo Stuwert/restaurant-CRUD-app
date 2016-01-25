@@ -2,15 +2,21 @@ extend ../adminlayout
 
 block content
   header.admin
-    h1= employee ? employee.first_name + ' ' + employee.last_name + ' Information' : "Enter Employee Information"
+    h1= employee && employee.first_name && employee.last_name ? employee.first_name + ' ' + employee.last_name + ' Information' : "Enter Employee Information"
 
-  form.form(method='post' action=employee ? '/admin/restaurants/' + restaurant.id + '/employees/' + employee.id + '/edit' : '/admin/restaurants/' + restaurant.id + '/employees')
+  form.form(method='post' action= employee && employee.id ? '/admin/restaurants/' + restaurant.id + '/employees/' + employee.id + '/edit' : '/admin/restaurants/' + restaurant.id + '/employees')
     h3= employee ? 'Edit Employee for ' + restaurant.name  : 'Create Employee for ' + restaurant.name
     label First Name
-    input(name='first' value= employee ? employee.first_name : "")
+    if employee && employee.first === ''
+      p.formfill Please enter a First Name
+    input(name='first' value= employee && employee.first ? employee.first : "")
     label Last Name
-    input(name='last' value= employee ? employee.last_name : "")
+    if employee && employee.last === ''
+      p.formfill Please enter a Last Name
+    input(name='last' value= employee && employee.last ? employee.last : "")
     label Performance
+    if employee && !employee.performance
+      p.formfill Please enter a Rating For this Employee
     div.ratings
       - var n = 1
       while n<=5
@@ -23,6 +29,9 @@ block content
       each position in positions
         option(value=position select= employee && employee.position === position ? selected : false)= position
     div.buttons
-      button.green(type='submit') Update
+      button.green(type='submit')= employee && employee.id ? 'Update' : 'Submit'
       a(href='/admin/restaurants/' + restaurant.id)
         button.red(type='button') Cancel
+
+  script.
+    console.log(!{JSON.stringify(employee)});
