@@ -13,9 +13,13 @@ block content
       button#update(type='button') Update Location
       input.hidden#epicenter(value= JSON.stringify(neighborhood.epicenter) name='epicenter')
       label Neighborhood Name
-      input(type='text' name='name' value=neighborhood.name)
+      if neighborhood && neighborhood.name === ''
+        p.formfill Please enter your Neighborhood Name
+      input(type='text' name='name' value= neighborhood ? neighborhood.name : "")
+      if neighborhood && neighborhood.city === ''
+        p.formfill Please enter your Neighborhood City
       label City
-      input(type='text' name='city' placeholder='City' value= neighborhood.city)
+      input(type='text' name='city' placeholder='City' value= neighborhood ? neighborhood.city : "")
       label State
       select(name='state')
         for val, index in states

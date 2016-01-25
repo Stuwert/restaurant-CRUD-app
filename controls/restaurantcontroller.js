@@ -33,16 +33,19 @@ var commands = {
   },
 
   createNewReview: function(req, res){
-
-    Reviews().insert({
-      reviewer_name: req.body.reviewer_name,
-      rating: req.body.rating,
-      review: req.body.review,
-      restaurant_id: req.params.id,
-      created_at: new Date()
-    }, 'id').then(function(){
-      res.redirect('/restaurants/' + req.params.id)
-    })
+    if (isBlank(req.body)){
+      res.render('restaurants/review', {review: req.body, restaurant: req.params})
+    }else{
+      Reviews().insert({
+        reviewer_name: req.body.reviewer_name,
+        rating: req.body.rating,
+        review: req.body.review,
+        restaurant_id: req.params.id,
+        created_at: new Date()
+      }, 'id').then(function(){
+        res.redirect('/restaurants/' + req.params.id)
+      })
+    }
   },
 
   deleteReview: function(req, res){
@@ -52,14 +55,23 @@ var commands = {
   },
 
   updateReview: function(req, res){
-    Reviews().where('id', req.params.reviewid).update({
-      reviewer_name: req.body.reviewer_name,
-      rating: req.body.rating,
-      review: req.body.review,
-      updated_at: new Date()
-    }).then(function(result){
-      res.redirect('/restaurants/' + req.params.id)
-    })
+    if (isBlank(req.body)){
+      res.render('restaurants/review', {review: {
+        reviewer_name: req.body.reviewer_name,
+        rating: req.body.rating,
+        review: req.body.review,
+        id: req.params.reviewid
+      }, restaurant: req.params})
+    }else{
+      Reviews().where('id', req.params.reviewid).update({
+        reviewer_name: req.body.reviewer_name,
+        rating: req.body.rating,
+        review: req.body.review,
+        updated_at: new Date()
+      }).then(function(result){
+        res.redirect('/restaurants/' + req.params.id)
+      })
+    }
   },
 }
 
@@ -81,4 +93,13 @@ function averageRating(array){
     total += item.rating;
   })
   return total / (count + 1);
+}
+
+function isBlank(object){
+  for(var item in object){
+    if (object[item] === ""){
+      return true;
+    }
+  }
+  return false;
 }

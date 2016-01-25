@@ -3,7 +3,7 @@ var neighborhood = require('../../controls/neighborhoodscontroller')
 var router = express.Router();
 
 //Create a new neighborhood form
-router.get('/new', neighborhood.createNeighborhood);
+router.get('/new', neighborhood.createFormNeighborhood);
 
 //Post a new neighborhood
 router.post('/', neighborhood.createNeighborhood);

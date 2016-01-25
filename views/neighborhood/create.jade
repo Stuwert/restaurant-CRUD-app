@@ -4,12 +4,20 @@ block body
   
   form.form(method='post' action='/admin/neighborhoods')
     h3 Create a Neighborhood
+    if neighborhood && neighborhood.name === ''
+      p.formfill Please enter your Neighborhood Name
     label Neighborhood Name
-    input(type='text' name='name')
+    input(type='text' name='name' value= neighborhood ? neighborhood.name : "")
+    if neighborhood && neighborhood.address === ''
+      p.formfill Please enter your Neighborhood Address
     label Street Address
-    input(type='text' name='address')
+    input(type='text' name='address' value= neighborhood ? neighborhood.address : "")
+    if neighborhood && neighborhood.city === ''
+      p.formfill Please enter your Neighborhood City
     label City
-    input(type='text' name='city' placeholder='City')
+    input(type='text' name='city' placeholder='City' value= neighborhood ? neighborhood.city : "")
+    if neighborhood && neighborhood.state === ''
+      p.formfill Please enter your Neighborhood State
     label State
     select(name='state')
       for val, index in states
