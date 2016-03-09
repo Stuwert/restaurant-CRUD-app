@@ -6,25 +6,17 @@ var router = express.Router();
 
 
 //Read request all
-router.get('/', controller.renderAllRestaurants);
-
-// Post a new Review
-router.post('/:id/reviews/', controller.createNewReview);
+router.get('/', function(req, res){
+  controller.renderAllRestaurants(function(restaurants){
+    res.render('restaurants/index', {restaurants: restaurants})
+  })
+})
 
 //Read request single restaurant
-router.get('/:id/', controller.renderSingleRestaurant);
-
-//Create a new Review
-router.get('/:id/reviews/new', controller.createEditReview);
-
-//Get form to edit a review
-router.get('/:id/reviews/:reviewid/edit', controller.createEditReview)
-
-
-//Delete a Review
-router.post('/:id/reviews/:reviewid/delete', controller.deleteReview);
-
-//Update a Review
-router.post('/:id/reviews/:reviewid', controller.updateReview);
+router.get('/:id/', function(req, res){
+  controller.renderSingleRestaurant(req.params.id, function(restaurant, meals){
+    res.render('restaurants/view', {restaurant: restaurant, meals: meals})
+  })
+})
 
 module.exports = router;

@@ -19,6 +19,8 @@ var adminemployees = require('./routes/admin/employees')
 var users = require('./routes/users/index')
 var userneighborhoods = require('./routes/users/neighborhoods')
 var userrestaurants = require('./routes/users/restaurants')
+var meals = require('./routes/users/meals')
+var userreviews = require('./routes/users/userreviews')
 
 //login routes
 var login = require('./routes/login')
@@ -47,14 +49,18 @@ app.use('/admin', function(req, res, next){
   }
 })
 //admin side
-app.use('/', users);
+app.use('/admin', admin);
 app.use('/admin/restaurants', adminrestaurants);
 app.use('/admin/restaurants', adminemployees);
 app.use('/admin/neighborhoods', adminneighborhoods);
+
 //user side
+app.use('/', users);
 app.use('/restaurants', userrestaurants);
-app.use('/admin', admin);
+app.use('/restaurants', meals)
+app.use('/restaurants', userreviews)
 app.use('/neighborhoods', userneighborhoods);
+
 //logins
 app.use('/login', login);
 

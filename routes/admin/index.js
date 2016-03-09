@@ -1,12 +1,16 @@
 var express = require('express');
-var controller = require('../../controls/admincontroller')
+var neighborhoods = require('../../controls/neighborhoodscontroller.js')
+var restaurants = require('../../controls/restaurantcontroller.js')
 var router = express.Router();
 
 
-
-
-//View all restaurants and employees
-router.get('/', controller.readAll);
+router.get('/', function(req, res){
+  neighborhoods.readAllNeighborhoods(function(neighborhoods){
+    restaurants.renderAllRestaurants(function(restaurants){
+      res.render('admin/index', {neighborhoods: neighborhoods, restaurants: restaurants})
+    })
+  })
+})
 
 
 

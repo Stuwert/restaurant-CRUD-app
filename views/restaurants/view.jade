@@ -13,26 +13,15 @@ block content
         p= restaurant.cuisine + " cuisine" 
         p= "Located in " + restaurant.city + ", " + restaurant.state
       p= restaurant.description
-      div.rating
-        p Rating:
-        div.rating
-          - var i = 1;
-          while i <= avgrating
-            img(src='/images/star.png' height='30' width='30' class= i++)
       div.buttons
-        a(href='/restaurants/' + restaurant.id + '/reviews/new')
-          button.green(type='button') Add a Review
-    div.reviews
-      each review in reviews
-        div.individualreview.table
+    div.meals.reviews
+      each meal in meals
+        div.individualreview.meal.table
           div.tableheader
-            h4= review.reviewer_name
-            p.dateslice= review.updated_at ? review.updated_at.toString().substring(0, 15) : review.created_at.toString().substring(0, 15)
+            h4= meal.name
           div.tablebody
-            p= review.review
-            - var i =1
-            div.rating
-              while i <= review.rating
-                img(src='/images/star.png' height='20' width='20' class=i++)
-            a.tablemore(href='/restaurants/' + restaurant.id + '/reviews/' + review.id + '/edit') Edit
+            ul
+              each ingredient in meal.ingredients
+                li= ingredient
+            a.tablemore(href='/restaurants/' + restaurant.id + '/meals/' + meal.id) Meal and Reviews
       
