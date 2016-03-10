@@ -1,5 +1,10 @@
 extends ../admin
 
+block navbar
+  if loggedin
+    div
+      a(href='/login/logout') Logout
+
 block body
   form.form(method='post' action= restaurant && restaurant.id ? '/admin/restaurants/' + restaurant.id + '/edit' : '/admin/restaurants')
     h3.labelform= restaurant && restaurant.name ? 'Update Restaurant' : 'New Restaurant'

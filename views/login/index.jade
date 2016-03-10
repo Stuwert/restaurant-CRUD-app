@@ -4,7 +4,9 @@ block navbar
 
 
 block body
-  form(method='post', action='/login')
+  form.form(method='post', action='/login')
     label Username
     input(type='text' name='userId')
+    label Password
+    input(type='password' name='password')
     button Submit

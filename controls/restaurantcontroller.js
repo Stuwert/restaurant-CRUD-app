@@ -32,6 +32,11 @@ module.exports = {
     Restaurants().where('id', id).del().then(function(){
       callback();
     })
+  },
+  getRestaurantsInNeighborhood: function(id, callback){
+    Restaurants().where('neighborhood_id', id).then(function(restaurants){
+      callback(restaurants);
+    })
   }
 }
 

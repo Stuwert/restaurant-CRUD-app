@@ -2,7 +2,7 @@ extends ../layout
 
 block content
   header
-    h1= title
+    h1= neighborhood.name
     div
       a(href='/neighborhoods') Return to Neighborhoods
 
@@ -20,14 +20,14 @@ block content
                 p Cuisine:  #{val.cuisine}
                 p Location: #{val.city}, #{val.state}
                 p= val.description
-
+  
   script.
     var map;
     var markers = {};
     var restaurants = !{JSON.stringify(restaurants)}
     function initMap(){
       map = new google.maps.Map(document.getElementById('map'), {
-      center: !{JSON.stringify(epicenter)},
+      center: !{JSON.stringify(neighborhood.epicenter)},
       zoom: 13
       });
       restaurants.forEach(function(item, i){

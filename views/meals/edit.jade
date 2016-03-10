@@ -1,0 +1,34 @@
+extend ../admin
+
+block navbar
+if loggedin
+  div
+    a(href='/login/logout') Logout
+
+block content
+  header.admin
+    h1 Enter Meal Information
+    
+  form.form(method='post' action= meal && meal.id ? '/admin/restaurants/' + restaurantid + '/meals/' + meal.id : '/admin/restaurants/' + restaurantid + '/meals')
+    h3= meal ? 'Edit ' + meal.name  : 'Create Meal'
+    label Name
+    input(name='name' value= meal && meal.name ? meal.name : "")
+    label Ingredients
+    input(name='ingredients' value= meal && meal.ingredients ? meal.ingredients : "" placeholder="Enter a comma delimmited list")
+    label Image Url
+    input(name='img' type='url' value= meal && meal.img ? meal.img : "")
+    label Public?
+    input(type='checkbox' checked= meal && meal.public ? true : false)
+    label Description 
+    textarea= meal && meal.description ? meal.description: ""
+    div.buttons
+      button.green(type='submit')= employee && employee.id ? 'Update' : 'Submit'
+      a(href='/admin/restaurants/' + restaurantid)
+        button.red(type='button') Cancel
+  
+  if meal 
+    a(href='/admin/restaurants/' + restaurantid + '/meals/' + meal.id + '/delete')
+      button(type=button) Delete
+
+  script.
+    console.log(!{JSON.stringify(employee)});

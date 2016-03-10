@@ -13,7 +13,7 @@ var dotenv = require('dotenv').load();
 var admin = require('./routes/admin/index')
 var adminrestaurants = require('./routes/admin/restaurants');
 var adminneighborhoods = require('./routes/admin/neighborhoods')
-var adminemployees = require('./routes/admin/employees')
+var adminmeals = require('./routes/admin/meals')
 
 //user routes
 var users = require('./routes/users/index')
@@ -51,7 +51,7 @@ app.use('/admin', function(req, res, next){
 //admin side
 app.use('/admin', admin);
 app.use('/admin/restaurants', adminrestaurants);
-app.use('/admin/restaurants', adminemployees);
+app.use('/admin/restaurants', adminmeals)
 app.use('/admin/neighborhoods', adminneighborhoods);
 
 //user side

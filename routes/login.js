@@ -11,4 +11,9 @@ router.post('/', function(req, res, next){
   res.redirect('/')
 })
 
+router.get('/logout', function(req, res, next){
+  res.clearCookie('userId')
+  res.redirect('/');
+})
+
 module.exports = router;

@@ -13,64 +13,51 @@ module.exports = {
   //   })
   // },
 
+  readNeighborhood: function(id, callback){
+    Neighborhoods().where('id', id).first().then(function(neighborhoods){
+      console.log(neighborhoods);
+      callback(neighborhoods);
+    })
+  },
+
   readAllNeighborhoods:function(callback){
     Neighborhoods().select().then(function(results){
       callback(results);
     })
+  },
+
+  createNeighborhood: function(obj, callback1, callback2){
+    var google = 'https://maps.googleapis.com/maps/api/geocode/json?address='
+    var location = obj.address + ',' + obj.city + ',' + obj.state;
+    request(google + location + '&key=' + process.env.GOOGLE_API, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        var jase = JSON.parse(body);
+        var newResp = jase.results[0].address_components
+        Neighborhoods().insert({
+          name: obj.name,
+          epicenter: jase.results[0].geometry.location,
+          county: newResp[3].long_name,
+          city: newResp[2].long_name,
+          state: newResp[4].short_name,
+        }).then(function(){
+          callback1();
+        })
+        callback2(jase.results[0].geometry.location)
+      }
+    })
+  },
+
+  editNeighborhood: function(id, callback){
+    Neighborhoods().where('id', id).first().then(function(neighborhood){
+      callback(neighborhood);
+    })
+  },
+
+  updateNeighborhood: function(id, obj, callback){
+    Neighborhoods().where('id', id).update(obj).then(function(neighborhood){
+      callback(neighborhood);
+    })
   }
-
-  // createNeighborhood: function(req, res){
-  //   if (isBlank(req.body)){
-  //     res.render('neighborhood/create', {neighborhood: req.body, states: states})
-  //   }else{
-  //     var google = 'https://maps.googleapis.com/maps/api/geocode/json?address='
-  //     var location = req.body.address + ',' + req.body.city + ',' + req.body.state;
-  //     request(google + location + '&key=' + process.env.GOOGLE_API, function (error, response, body) {
-  //       if (!error && response.statusCode == 200) {
-  //         var jase = JSON.parse(body);
-  //         var newResp = jase.results[0].address_components
-  //         Neighborhoods().insert({
-  //           name: req.body.name,
-  //           epicenter: jase.results[0].geometry.location,
-  //           county: newResp[3].long_name,
-  //           city: newResp[2].long_name,
-  //           state: newResp[4].short_name,
-  //         }).then(function(){
-  //           res.redirect('/admin')
-  //         })
-  //         res.render('index', {location: jase.results[0].geometry.location})
-  //       }
-  //     })
-  //   }
-  // },
-  // createFormNeighborhood: function(req, res){
-  //   res.render('neighborhood/create', {states: states})
-  // },
-  // editNeighborhood: function(req, res){
-  //   Neighborhoods().where('id', req.params.id).first().then(function(neighborhood){
-  //     res.render('neighborhood/edit', {neighborhood: neighborhood, states: states})
-  //   })
-  // },
-  // updateNeighborhood: function(req, res){
-  //   if (isBlank(req.body)){
-  //     res.render('neighborhood/edit', {neighborhood: {
-  //       epicenter: req.body.epicenter,
-  //       name: req.body.name,
-  //       city: req.body.city,
-  //       state: req.body.state,
-  //       id: req.params.id
-  //     }, states: states})
-  //   }
-  //   Neighborhoods().where('id', req.params.id).update({
-  //     epicenter: req.body.epicenter,
-  //     name: req.body.name,
-  //     city: req.body.city,
-  //     state: req.body.state
-  //   }).then(function(){
-  //     res.redirect('/admin')
-  //   })
-  // }
-
 }
 
 function Neighborhoods(){

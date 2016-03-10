@@ -7,7 +7,7 @@ var router = express.Router();
 router.get('/', function(req, res){
   neighborhoods.readAllNeighborhoods(function(neighborhoods){
     restaurants.renderAllRestaurants(function(restaurants){
-      res.render('admin/index', {neighborhoods: neighborhoods, restaurants: restaurants})
+      res.render('admin/index', {neighborhoods: neighborhoods, restaurants: restaurants, loggedin: req.cookies.userId})
     })
   })
 })

@@ -1,5 +1,10 @@
 extends ../admin
 
+block navbar 
+  if loggedin
+    div
+      a(href='/login/logout') Logout
+
 block body
   
   form.form(method='post' action='/admin/neighborhoods')

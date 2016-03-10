@@ -1,6 +1,9 @@
 extend ../admin
 
 block navbar
+  if loggedin
+    div
+      a(href='/login/logout') Logout
     
 block body
   main.admin
